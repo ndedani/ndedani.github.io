@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Journal Entires</title>
+
+<!-- Updated upstream, adding bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+
+</head>
+<body>
+<section>
+
+<!-- Following will add the beige band on top with "Welcome Admin User" text -->
+<!-- Navbar with logo and buttons-->
+<nav>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="app_logo.png" id="Logo"></a>
+    </div>
+    <div class="welcome-txt">
+        <h2>  Journal Entries </h2>
+    </div>
+    
+
+   <!-- Added an empty profile pic with the option of switching to the pre-set pic (SHOULD be changed!)-->
+   <img src="profile.jpeg" class="profile" type="button" id="profile" data-bs-toggle="dropdown"><span class="caret"></span>
+
+<!-- Page Links under nav -->
+ 
+<div class="username">
+        <!-- To load username when page is loaded -->
+        <script>
+            var showingUserFirstName = document.getElementById('userFirstName');
+            document.write(showingUserFirstName);
+        </script>
+    
+</div>
+</nav>
+
+<!-- placeholder for future use in menu implementation -->
+<div>
+    <div class="nav-links">
+        <li><a href="#">Placeholder</a></li>
+        <li><a href="#">Self Help</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="Login.html">Sign in</a></li>
+    </div>
+</div>
+<!-- Sidenav Menu from W3 -->
+<!-- https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+<div id="mySidenav" class="sidenav" style="white-space: nowrap;">
+<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<a href="#" onclick="location.href='index.html'">Home</a>
+<a href="#">Email</a>
+<a href="#" onclick="location.href='view_accounts.html'">Chart of Accounts</a>
+<a href="#" onclick="location.href='journal_entries.html'">Journal</a>
+</div>
+
+<!-- Use any element to open the sidenav -->
+<span onclick="openNav()"><button id="sideBarBtn">≡</button></span>
+
+<br>
+<br>
+
+<script>
+    /* Set the width of the side navigation to 250px */
+function openNav() {
+document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+document.getElementById("mySidenav").style.width = "0";
+}
+</script>  
+
+<!-- This section is for the Approved Journal Entries -->
+<div class="tableBody">
+    <h3 id="approvedEntriesTitle" style="text-align: center; position:relative; top:44px;">Approved Entries</h3>
+    <p><style> #approvedSearchText{width: 200px; position: relative; border: 1px solid #ccc; display:inline;}</style>
+    <style> #addJournalBtn{ position: relative; border: 2px solid #ccc; background-color: rgb(206, 235, 219); float: right; display:inline;}</style>
+    <style>  #approvedSearch{text-align: left;}</style>
+    <label for="approvedSearchText" id="approvedSearch">Search:</label>
+    <input name="searchText" id="approvedSearchText" type="text" placeholder="Search" onkeyup="approvedTableSearchBar()">
+    <button id="addJournalBtn" onclick="location.href='add_journal_entries.html'">+ Add Journal Entry</button></p>
+
+    <table id="approvedTable" class="table table-hover table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+        <tr class="table-success">
+            <th class="th-sm">Entry ID</th>
+            <th class="th-sm">Date Submitted</th>
+            <th class="th-sm">Submitted By</th>
+            <th class="th-sm">Approved By</th>
+            <th class="th-sm">Account Name</th>
+            <th class="th-sm">Description</th>
+            <th class="th-sm">Accounts Debited</th>
+            <th class="th-sm">Accounts Credited</th>
+            <th class="th-sm">Attachment</th>
+        </tr>
+        </thead>
+        <tbody id="approved-journal-list"></tbody>
+    </table>
+</div>
+
+<!-- This section is for grabing the pending entry and moving it into another table. -->
+<form class="openGetEntryDisplay" id="openGetEntryDisplay">
+    <div>
+        <button class="closeXbtn" onclick="closeEntryDisplay()">✖</button>
+    
+        <p><label style="display:inline-block; width: 140px; margin-left: 10px; margin-top: 10px;">EntryID:</label> <input id="EntryID" type="number" placeholder="Ex: 15"></p>
+        <hr>
+        <p><label style="display:inline-block; width: 140px; margin-left: 10px;">Date Submitted:</label> <input id="DateSubmitted" type="text" placeholder="Ex: yyyy-mm-dd" readonly></p>
+        <p><label style="display:inline-block; width: 140px; margin-left: 10px;">Submitted By:</label> <input id="SubmittedBy" type="text" placeholder="Ex: Tuser2022" readonly></p>
+        <p><label style="display:inline-block; width: 140px; margin-left: 10px;">Approved By:</label> <input id="ApprovedBy" type="text" placeholder="Ex: Tuser2022" readonly></p>
+        <p><label style="display:inline-block; width: 140px; margin-left: 10px;">Account Name:</label> <input id="AccountName" type="text" placeholder="Ex: Assets" readonly></p>
+        <p><label style="display:inline-block; width: 140px; margin-left: 10px;">Description:</label> <input id="DescriptionReadOnly" type="text" placeholder="Ex: Because I like money" readonly></p>
+        <p><label style="display:inline-block; width: 140px; margin-left: 10px;">Accounts Debited:</label> <input id="AccountsDebited" type="number" placeholder="Only numbers" readonly></p>
+        <p><label style="display:inline-block; width: 140px; margin-left: 10px;">Accounts Credited:</label> <input id="AccountsCredited" type="number" placeholder="Only numbers" readonly></p>
+        <p><label style="display:inline-block; width: 140px; margin-left: 10px;">Attachment:</label> <input id="Attachment" type="file" placeholder="For files soon" readonly></p>
+    
+        <hr>
+        <button style="position: relative; border: 2px solid #ccc; background-color: rgb(248, 237, 201); float: right; margin-right: 20px; display:inline;" id="resetBtn" type="button">Reset</button>
+        <button style="position: relative; border: 2px solid #ccc; background-color: rgb(206, 235, 219); float: left; margin-left: 20px; display:inline;" id="approveJournalEntryBtn" type="button" disabled>Approve Journal Entry</button>
+        <button style="position: relative; border: 2px solid #ccc; background-color: rgb(243, 212, 212); float: left; margin-left: 20px; display:inline;" id="rejectJournalEntryBtn" type="button" disabled>Reject Journal Entry</button>
+        <button style="position: relative; border: 2px solid #ccc; background-color: rgb(248, 237, 201); float: right; margin-right: 10px; display:inline;" id="getJournalEntryBtn" type="button">Get Journal Entry</button>
+    </div>
+    </form>
+
+    <script>
+        /* Set the width of the side navigation to 250px */
+    function closeXbtn() {
+    document.getElementById("openGetEntryDisplay").style.display = "none";
+    }
+    
+    /* Set the width of the side navigation to 0 */
+    function openGetEntry() {
+    document.getElementById("openGetEntryDisplay").style.display = "block";
+    }
+    </script> 
+
+<br>
+
+<!-- This section is for the Pending Journal Entries -->
+<div class="tableBody" id="pendingTable">
+    <h3 id="approvedEntriesTitle" style="text-align: center; position:relative; top:44px;">Pending Entries</h3>
+    <p><style> #pendingSearchText{width: 200px; position: relative; border: 1px solid #ccc; display:inline;}</style>
+        <style> #approveJournalBtn{ position: relative; border: 2px solid #ccc; background-color: rgb(248, 237, 201); float: right; display:inline;}</style>
+        <style>  #pendingSearch{text-align: left;}</style>
+        <label for="pendingSearchText" id="pendingSearch">Search:</label>
+        <input name="searchText" id="pendingSearchText" type="text" placeholder="Search" onkeyup="pendingTableSearchBar()">
+    <button id="approveJournalBtn" onclick="openGetEntry()">+ Pending Journal Entries</button></p>
+
+    <table id="dtBasicExample" class="table table-hover table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+        <tr class="table-warning">
+            <th class="th-sm">Entry ID</th>
+            <th class="th-sm">Date Submitted</th>
+            <th class="th-sm">Submitted By</th>
+            <th class="th-sm">Approved By</th>
+            <th class="th-sm">Account Name</th>
+            <th class="th-sm">Description</th>
+            <th class="th-sm">Accounts Debited</th>
+            <th class="th-sm">Accounts Credited</th>
+            <th class="th-sm">Attachment</th>
+        </tr>
+        </thead>
+        <tbody id="pending-journal-list"></tbody>
+    </table>
+
+</div>
+
+<br>
+
+<!-- This section is for the Rejected Journal Entries -->
+<div class="tableBody" id="rejectedTable">
+    <h3 id="approvedEntriesTitle" style="text-align: center; position:relative; top:44px;">Rejected Entries</h3>
+    <p><style> #rejectedSearchText{width: 200px; position: relative; border: 1px solid #ccc; display:inline;}</style>
+    <style> #refuseJournalBtn{ position: relative; margin: 0px 0px 15px 0px; border: 2px solid #ccc; background-color: rgb(243, 212, 212); float: right; display:inline;}</style>
+    <style>  #rejectSearch{text-align: left;}</style>
+    <label for="rejectedSearchText" id="rejectSearch">Search:</label>
+    <input name="searchText" id="rejectedSearchText" type="text" placeholder="Search" onkeyup="rejectedTableSearchBar()">
+    <button id="refuseJournalBtn" onclick="deleteEntries()">- Delete Journal Entry</button></p>
+
+    <table id="dtBasicExample" class="table table-hover table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+        <tr class="table-danger">
+            <th class="th-sm">Entry ID</th>
+            <th class="th-sm">Date Submitted</th>
+            <th class="th-sm">Submitted By</th>
+            <th class="th-sm">Approved By</th>
+            <th class="th-sm">Account Name</th>
+            <th class="th-sm">Description</th>
+            <th class="th-sm">Accounts Debited</th>
+            <th class="th-sm">Accounts Credited</th>
+            <th class="th-sm">Attachment</th>
+        </tr>
+        </thead>
+        <tbody id="rejected-journal-list"></tbody>
+    </table>
+</div>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <h1>Contact Us!</h1>
+    <ul> 
+        <a href="#">PlaceHolder</a>
+        <a href="#">PlaceHolder</a>
+        <a href="#">PlaceHolder</a>
+        
+    </ul>
+   
+</footer>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+    import { getFirestore, collection, getDoc, getDocs, onSnapshot, deleteDoc, 
+        addDoc, doc, setDoc, query, where } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // ********** Alexander Day's Database **********
+    const firebaseConfig = {
+      apiKey: "AIzaSyAswcBVoFfQx746ZSArJw6jZRqfa3ZmBbI",
+      authDomain: "swe-4713-application-domain.firebaseapp.com",
+      projectId: "swe-4713-application-domain",
+      storageBucket: "swe-4713-application-domain.appspot.com",
+      messagingSenderId: "210297298562",
+      appId: "1:210297298562:web:815b3cc913460d968b5e9b"
+    };
+  
+    // Initialize Cloud Firestore
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(app);
+
+    //collection ref
+    const colRefApproved = collection(db, 'ApprovedJournalEntries');
+    const colRefPending = collection(db, 'PendingJournalEntries');
+    const colRefRejected = collection(db, 'RejectedJournalEntries');
+
+
+    // Adds a record to the chosen table. This is paramount in setting it up.
+    var tbody = document.getElementById("approved-journal-list");
+    var tbody2 = document.getElementById("pending-journal-list");
+    var tbody3 = document.getElementById("rejected-journal-list");
+  
+    //this function helps in setting up how many cells and rows will be going into the table body. 
+    function AddItemToApprovedTable(EntryID,DateSubmitted,SubmittedBy,ApprovedBy,
+    AccountName,Description,AccountsDebited,AccountsCredited,Attachment) {
+
+        //sets up the row and amount of cells that will be added within said row.
+        let trow = document.createElement('tr'); //represents the tables rows
+        let td1 = document.createElement('td'); //represents the tables cells
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+        let td4 = document.createElement('td');
+        let td5 = document.createElement('td');
+        let td6 = document.createElement('td');
+        let td7 = document.createElement('td');
+        let td8 = document.createElement('td');
+        let td9 = document.createElement('td');
+
+        //sets the HTML content to the listed parameters within the function
+        td1.innerHTML = EntryID;
+        td2.innerHTML = DateSubmitted;
+        td3.innerHTML = SubmittedBy;
+        td4.innerHTML = ApprovedBy;
+        td5.innerHTML = AccountName;
+        td6.innerHTML = Description;
+        td7.innerHTML = AccountsDebited;
+        td8.innerHTML = AccountsCredited;
+        td9.innerHTML = Attachment;
+    
+
+        //adds the table cells to the table row
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+        trow.appendChild(td6);
+        trow.appendChild(td7);
+        trow.appendChild(td8);
+        trow.appendChild(td9);
+
+        //adds the row to the tables body
+        tbody.appendChild(trow);
+
+    }
+
+    //Adds the rest or the records to the table.
+    function AddAllItemsToApprovedTable(ApprovedJournalEntries) {
+        tbody.innerHTML = "";
+        ApprovedJournalEntries.forEach(element => {
+            AddItemToApprovedTable(element.EntryID, element.DateSubmitted, element.SubmittedBy, 
+            element.ApprovedBy, element.AccountName, element.Description, element.AccountsDebited, 
+            element.AccountsCredited, element.Attachment);
+        });
+    }
+
+    function AddItemToPendingTable(EntryID,DateSubmitted,SubmittedBy,ApprovedBy,
+    AccountName,Description,AccountsDebited,AccountsCredited,Attachment,ApproveRefuse) {
+
+        let tPendingrow = document.createElement('tr'); //represents the tables rows
+        let tdPending1 = document.createElement('td'); //represents the tables columns (or cells as there called)
+        let tdPending2 = document.createElement('td');
+        let tdPending3 = document.createElement('td');
+        let tdPending4 = document.createElement('td');
+        let tdPending5 = document.createElement('td');
+        let tdPending6 = document.createElement('td');
+        let tdPending7 = document.createElement('td');
+        let tdPending8 = document.createElement('td');
+        let tdPending9 = document.createElement('td');
+
+        tdPending1.innerHTML = EntryID;
+        tdPending2.innerHTML = DateSubmitted;
+        tdPending3.innerHTML = SubmittedBy;
+        tdPending4.innerHTML = ApprovedBy;
+        tdPending5.innerHTML = AccountName;
+        tdPending6.innerHTML = Description;
+        tdPending7.innerHTML = AccountsDebited;
+        tdPending8.innerHTML = AccountsCredited;
+        tdPending9.innerHTML = Attachment;
+    
+
+        //adds the table cells to the table row
+        tPendingrow.appendChild(tdPending1);
+        tPendingrow.appendChild(tdPending2);
+        tPendingrow.appendChild(tdPending3);
+        tPendingrow.appendChild(tdPending4);
+        tPendingrow.appendChild(tdPending5);
+        tPendingrow.appendChild(tdPending6);
+        tPendingrow.appendChild(tdPending7);
+        tPendingrow.appendChild(tdPending8);
+        tPendingrow.appendChild(tdPending9);
+
+        tbody2.appendChild(tPendingrow);
+
+     }
+
+    //Adds the rest or the records to the table.
+    function AddAllItemsToPendingTable(PendingJournalEntries) {
+        tbody2.innerHTML = "";
+        PendingJournalEntries.forEach(element => {
+            AddItemToPendingTable(element.EntryID, element.DateSubmitted, element.SubmittedBy, 
+            element.ApprovedBy, element.AccountName, element.Description, element.AccountsDebited, 
+            element.AccountsCredited, element.Attachment);
+        });
+    }
+
+    function AddItemToRejectedTable(EntryID,DateSubmitted,SubmittedBy,ApprovedBy,
+    AccountName,Description,AccountsDebited,AccountsCredited,Attachment,ApproveRefuse) {
+
+        let tRejectedrow = document.createElement('tr'); //represents the tables rows
+        let tdRejected1 = document.createElement('td'); //represents the tables columns (or cells as there called)
+        let tdRejected2 = document.createElement('td');
+        let tdRejected3 = document.createElement('td');
+        let tdRejected4 = document.createElement('td');
+        let tdRejected5 = document.createElement('td');
+        let tdRejected6 = document.createElement('td');
+        let tdRejected7 = document.createElement('td');
+        let tdRejected8 = document.createElement('td');
+        let tdRejected9 = document.createElement('td');
+
+        tdRejected1.innerHTML = EntryID;
+        tdRejected2.innerHTML = DateSubmitted;
+        tdRejected3.innerHTML = SubmittedBy;
+        tdRejected4.innerHTML = ApprovedBy;
+        tdRejected5.innerHTML = AccountName;
+        tdRejected6.innerHTML = Description;
+        tdRejected7.innerHTML = AccountsDebited;
+        tdRejected8.innerHTML = AccountsCredited;
+        tdRejected9.innerHTML = Attachment;
+    
+
+        //adds the table cells to the table row
+        tRejectedrow.appendChild(tdRejected1);
+        tRejectedrow.appendChild(tdRejected2);
+        tRejectedrow.appendChild(tdRejected3);
+        tRejectedrow.appendChild(tdRejected4);
+        tRejectedrow.appendChild(tdRejected5);
+        tRejectedrow.appendChild(tdRejected6);
+        tRejectedrow.appendChild(tdRejected7);
+        tRejectedrow.appendChild(tdRejected8);
+        tRejectedrow.appendChild(tdRejected9);
+
+        tbody3.appendChild(tRejectedrow);
+
+     }
+
+    //Adds the rest or the records to the table.
+    function AddAllItemsToRejectedTable(RejectedJournalEntries) {
+        tbody3.innerHTML = "";
+        RejectedJournalEntries.forEach(element => {
+            AddItemToRejectedTable(element.EntryID, element.DateSubmitted, element.SubmittedBy, 
+            element.ApprovedBy, element.AccountName, element.Description, element.AccountsDebited, 
+            element.AccountsCredited, element.Attachment);
+        });
+    }
+
+    //gets all data from firestore. Now upgraded to update in realtime without refreshing the page.
+    async function GetAllJournalDataRealtime() {
+        const dbRefPending = collection(db, "PendingJournalEntries");
+        const dbRefApproved = collection(db, "ApprovedJournalEntries");
+        const dbRefRejected = collection(db, "RejectedJournalEntries");
+
+        //Approved
+        onSnapshot(dbRefApproved,(querySnapshot) => {
+            var approvedJournalEntries = [];
+
+            querySnapshot.forEach(doc => {
+                approvedJournalEntries.push({...doc.data(), id: doc.id});
+            });
+            AddAllItemsToApprovedTable(approvedJournalEntries);
+        })
+
+        //Pending
+        onSnapshot(dbRefPending,(querySnapshot) => {
+            var pendingJournalEntries = [];
+
+            querySnapshot.forEach(doc => {
+                pendingJournalEntries.push({...doc.data(), id: doc.id});
+            });
+            AddAllItemsToPendingTable(pendingJournalEntries);
+        })
+
+        //Rejected
+        onSnapshot(dbRefRejected,(querySnapshot) => {
+            var rejectedJournalEntries = [];
+
+            querySnapshot.forEach(doc => {
+                rejectedJournalEntries.push({...doc.data(), id: doc.id});
+            });
+            AddAllItemsToRejectedTable(rejectedJournalEntries);
+        })
+        
+    }
+
+    //shows table upon loading up the page.
+    window.onload = GetAllJournalDataRealtime;
+
+
+
+    //Grabs the collections of all three journal entries in the firestore database and displays all documents within an organized array on the console.
+    onSnapshot(colRefPending, (snapshot) => {
+        let users = []
+        snapshot.docs.forEach((doc) => {
+            users.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(users);
+       })
+
+       onSnapshot(colRefApproved, (snapshot) => {
+        let users = []
+        snapshot.docs.forEach((doc) => {
+            users.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(users);
+       })
+
+       onSnapshot(colRefRejected, (snapshot) => {
+        let users = []
+        snapshot.docs.forEach((doc) => {
+            users.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(users);
+       })
+
+           //getting all of our references
+    let EntryID = document.getElementById("EntryID");
+    let DateSubmitted = document.getElementById("DateSubmitted");
+    let SubmittedBy = document.getElementById("SubmittedBy");
+    let ApprovedBy = document.getElementById("ApprovedBy");
+    let AccountName = document.getElementById("AccountName");
+    let DescriptionReadOnly = document.getElementById("DescriptionReadOnly");
+    let AccountsDebited = document.getElementById("AccountsDebited");
+    let AccountsCredited = document.getElementById("AccountsCredited");
+    let Attachment = document.getElementById("Attachment");
+
+    let rejectJournalEntryBtn = document.getElementById("rejectJournalEntryBtn");
+    let approveJournalEntryBtn = document.getElementById("approveJournalEntryBtn");
+
+
+
+    async function getDocument() {
+
+        const docSnap = await getDoc(doc(db, "PendingJournalEntries", EntryID.value));
+
+        if(docSnap.exists()){
+            DateSubmitted.value = docSnap.data().DateSubmitted;
+            SubmittedBy.value = docSnap.data().SubmittedBy;
+            ApprovedBy.value = docSnap.data().ApprovedBy;
+            AccountName.value = docSnap.data().AccountName;
+            DescriptionReadOnly.value = docSnap.data().Description;
+            AccountsDebited.value = docSnap.data().AccountsDebited;
+            AccountsCredited.value = docSnap.data().AccountsCredited;
+            Attachment.value = docSnap.data().Attachment;
+        }
+
+        else{
+            document.getElementById('rejectJournalEntryBtn').disabled = true;
+            document.getElementById('approveJournalEntryBtn').disabled = true;
+            alert("No such Document Exist!")
+        }
+    }
+
+    getJournalEntryBtn.addEventListener("click", function() {
+        getDocument();
+        if (document.getElementById("EntryID").value==="") { //This '||'' should be OR and not treated as an AND but somehow it is and somehow it works!
+             document.getElementById('rejectJournalEntryBtn').disabled = true;
+             document.getElementById('approveJournalEntryBtn').disabled = true;
+
+         } else { 
+             document.getElementById('rejectJournalEntryBtn').disabled = false;
+             document.getElementById('approveJournalEntryBtn').disabled = false;
+         }
+
+    });
+
+    resetBtn.addEventListener("click", function() {
+        document.getElementById('rejectJournalEntryBtn').disabled = true;
+        document.getElementById('approveJournalEntryBtn').disabled = true;
+        document.getElementById("openGetEntryDisplay").reset();
+    })
+
+
+
+    async function ApproveDocument() {
+        const addNewUsers = document.querySelector('.openGetEntryDisplay')
+
+        const docRef = await setDoc(doc(db, "ApprovedJournalEntries", EntryID.value), {
+                EntryID: EntryID.value,
+                DateSubmitted: DateSubmitted.value,
+                SubmittedBy: SubmittedBy.value,
+                ApprovedBy: ApprovedBy.value,
+                AccountName: AccountName.value,
+                Description: DescriptionReadOnly.value,
+                AccountsDebited: AccountsDebited.value,
+                AccountsCredited: AccountsCredited.value,
+                Attachment: Attachment.value
+            }
+
+            ,await deleteDoc(doc(db, "PendingJournalEntries", EntryID.value))
+        )
+        .then(() =>{
+            addNewUsers.reset()
+            document.getElementById('approveJournalEntryBtn').disabled = true;
+            document.getElementById('rejectJournalEntryBtn').disabled = true;
+            alert("Journal Entry Has Been Approved Successfully!");
+        })
+        .catch(() =>{
+            alert("Whoops! Something is wrong:" + error);
+        });
+    }
+
+    approveJournalEntryBtn.addEventListener("click", ApproveDocument);
+
+
+    async function RejectDocument() {
+        const addNewUsers = document.querySelector('.openGetEntryDisplay')
+
+        const docRef = await setDoc(doc(db, "RejectedJournalEntries", EntryID.value), {
+                EntryID: EntryID.value,
+                DateSubmitted: DateSubmitted.value,
+                SubmittedBy: SubmittedBy.value,
+                ApprovedBy: ApprovedBy.value,
+                AccountName: AccountName.value,
+                Description: DescriptionReadOnly.value,
+                AccountsDebited: AccountsDebited.value,
+                AccountsCredited: AccountsCredited.value,
+                Attachment: Attachment.value
+
+            }
+
+            ,await deleteDoc(doc(db, "PendingJournalEntries", EntryID.value))
+        )
+        .then(() =>{
+            addNewUsers.reset()
+            document.getElementById('rejectJournalEntryBtn').disabled = true;
+            document.getElementById('approveJournalEntryBtn').disabled = true;
+            alert("Journal Entry Has Been Rejected Successfully!");
+        })
+        .catch(() =>{
+            alert("Whoops! Something is wrong:" + error);
+        });
+    }
+
+    rejectJournalEntryBtn.addEventListener("click", RejectDocument);
+
+</script>
+
+<script>
+    function approvedTableSearchBar() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("approvedSearchText");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("approvedTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+function pendingTableSearchBar() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("pendingSearchText");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("pendingTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+function rejectedTableSearchBar() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("rejectedSearchText");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("rejectedTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+</script>
+</body>
+</html>

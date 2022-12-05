@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"  crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+</head>
+<body>
+
+<section>
+    <style>
+/* Adding for our Band style 
+      .Band{
+        background-color: Beige ;
+        padding: 4px ;
+        }
+
+/* Adding for our login style */
+      .Login{
+        background-color: Beige ;
+        margin: 10px;
+        width: 320px;
+        height: 200px;
+        border: 0px LightGrey ;
+        text-align: left;
+        }
+
+/* Adding our password requirement warning */
+      #message {
+        display:none;
+        background: Beige;
+        width: 500px;
+        height: 300px;
+        color: #000;
+        position: relative;
+        padding: 20px;
+        margin-top: 10px;
+        text-align: left;
+         }
+
+/* Added for something to hold the "create a new user" requirement */
+      #forgetPasswordBody{
+        display:none;
+        background-color: Beige ;
+        margin: 10px;
+        width: 320px;
+        height: 300px;
+        border: 0px LightGrey ;
+        text-align: left;
+        }
+
+/* Adding for password requirement design for the "✖" and "✔" */
+      .invalid {
+        color: red;
+        }
+
+      .invalid:before {
+        position: relative;
+        left: -3px;
+        content: "✖";
+        }
+
+
+      .valid {
+        color: green;
+        }
+
+      .valid:before {
+        position: relative;
+        left: -3px;
+        content: "✔";
+        }
+
+/* Helps to center all header 3's */
+      h3 {text-align: center;}
+
+/* Hides all steps by default */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+    .step {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #1183CA;
+      border: none;
+      border-radius: 50%;
+      display: inline-block;
+      opacity: 1;
+      }
+
+    .step.active {
+      opacity: 1;
+      }
+
+/* Mark the steps that are finished and valid: */
+    .step.finish {
+      background-color: #04AA6D;
+      }
+
+      label {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+      input {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+      select {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+    
+
+  </style>
+
+<!-- Navbar with logo and buttons-->
+<nav>
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="app_logo.png" id="Logo"></a>
+  </div>
+  <div class="welcome-txt">
+      <h2>  Login Here! </h2>
+  </div>
+  
+
+ <!-- Added an empty profile pic with the option of switching to the pre-set pic (SHOULD be changed!)-->
+ <img src="profile.jpeg" class="profile" type="button" id="profile" data-bs-toggle="dropdown"><span class="caret"></span>
+
+<!-- Page Links under nav -->
+
+<div class="username">
+      <!-- To load username when page is loaded -->
+      <script>
+          var showingUserFirstName = document.getElementById('userFirstName');
+          document.write(showingUserFirstName);
+      </script>
+  
+</div>
+</nav>
+
+<div>
+      <div class="nav-links">
+          <li><a href="#">Placeholder</a></li>
+          <li><a href="#">Self Help</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="Login.html">Sign in</a></li>
+      </div>
+  </div>
+
+
+    <!-- Added Login in with username, password, remember me option, submit button, and a "create new user" and "forgot password" -->
+  <center>
+    <form class="px-4 py-3" name ="loginform">
+      <div class="Login">
+  <div class="form-group col-md-11">
+
+      <!-- Added Username textbox-->
+<p><label for="exampleDropdownFormEmail1">Username</label>
+      <input type="username" class="form-control" id="exampleDropdownFormUsername" placeholder="Dbowler07" required>
+
+    <!-- Added Password textbox with a bit of requirements to use it -->
+    <label for="psw">Password</label>
+      <input type="password" class="form-control" id="psw" name="psw" placeholder="P@55w_rd"
+             pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[_.&#@]).{8,}" maxlength="8" autocomplete="current-password"
+             title="Must contain at least one uppercase or lowercase letter at the start,
+             one number, a special character, and at least 8 characters at minimum required" required />
+
+    <!-- Added remember me checkbox -->
+    <input type="checkbox" class="form-check-input" id="dropdownCheck">
+      <label class="form-check-label" for="dropdownCheck" style="display:inline-block; margin-left: 0;"> Remember me </label>
+
+    <!-- Added show password checkbox -->
+    <input type="checkbox" class="form-check-input" id="showPasswordCheck" onclick="showingPassword()">
+    <label class="form-check-label" for="showPasswordCheck" style="display:inline-block; margin-left: 0;"> Show Password </label></p>
+
+
+      <!-- Added Submit button -->
+    <span style="position: relative; top: -15px; right: -39%;">
+     <button type="submit" class="btn btn-primary" value="Submit" >Sign in</button></span>
+  </div>
+</div>
+      </form>
+
+      <!-- Added button texts for a "create new user" and "forgot password" options -->
+      <p><a class="create-user" type="button" id="newuser" onclick="location.href='sign_up.html'">New around here? Create a new User</a></p>
+      <a class="show-password" type="button" id="forgotPassword">Forgot password?</a>
+    </center>
+
+    <!-- Added a popup requirement block that shows what is demanded for the password and what you've added so far -->
+    <center>
+    <div id="message">
+  <h3>Password must contain the following:</h3>
+  <p id="letter" class="invalid">Start with a <b>letter</b></p>
+  <p id="number" class="invalid">A <b>number</b></p>
+  <p id="special" class="invalid">A <b>special</b> character ( _ , . , & , # , @ )</p>
+  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+</div>
+        </center>
+
+    <!-- Added the body for the "Forgot password" button -->
+     <center>
+         <form id="forgetPasswordBody" action="">
+    <div class="tab">
+      <div class="form-group col-md-11">
+        <h3>Forgot Password</h3>
+
+        <!-- Added Email textbox -->
+        <p><label for="exampleDropdownFormEmail1">Email</label>
+            <input type="username" class="form-control" id="exampleDropdownFormEmail1" placeholder="Example@Email.com" required>
+
+        <!-- Added Username textbox -->
+        <p><label for="exampleDropdownFormUserId">User ID</label>
+        <input type="username" class="form-control" id="exampleDropdownFormUserId" placeholder="Dbowler07" required>
+    </div>
+  </div>
+
+             <!-- Added the next forgetPasswordBody body tab -->
+    <div class="tab">
+      <div class="form-group col-md-11">
+        <h3>Forgot Password</h3>
+
+        <!-- Added a dropdown option for the security questions -->
+        <p><label for="exampleDropdownFormUserId">Choose a Security Question</label>
+    <select id="securityQuestions" class="form-select" >
+        <option selected>Choose a Question:</option>
+        <option value="Question(1)">What is the name of your first pet?</option>
+        <option value="Question(2)">What is your mothers maiden name?</option>
+        <option value="Question(3)">What College did you go to?</option>
+    </select>
+
+        <!-- Added a type the answer textbox for the security question -->
+        <p><label for="exampleDropdownFormUserId">Type The Answer</label>
+        <input type="text" class="form-control" id="exampleDropdownFormSecurityAnswer" placeholder="Answer(noSpaces)..." required>
+    </div>
+  </div>
+
+             <!-- Added the "next" and "previous" buttons for the forget password option -->
+             <span style="position: relative; top: 25px; right: -20%;"><button type="button" onclick="nextPrev(-1)" id="prevBtn" class="btn btn-primary">&laquo; Previous</button></span>
+             <span style="position: relative; top: 25px; right: -20%;"><button type="button" onclick="nextPrev(1)" id="nextBtn" class="btn btn-primary">Next &raquo;</button></span>
+
+             <!-- Added a visual cue for how many tabs are left when filling out the forgot password box -->
+        <div style="text-align:center;margin-top:40px;">
+             <span class="step"></span>
+             <span class="step"></span>
+         </div>
+    </div>
+             </form>
+     </center>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <h1>Contact Us!</h1>
+  <ul> 
+      <a href="#">PlaceHolder</a>
+      <a href="#">PlaceHolder</a>
+      <a href="#">PlaceHolder</a>
+      
+  </ul>
+ 
+  
+</footer>
+
+<!-- Adding Javascript for utilizing the majority of the password requirements -->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    // ********** Neha's Database **********
+    const firebaseConfig = {
+      apiKey: "AIzaSyCLeXpBcmY50646HWq9RkVjf2tNcPSfXCA",
+      authDomain: "appdomain-5bc76.firebaseapp.com",
+      databaseURL: "https://appdomain-5bc76-default-rtdb.firebaseio.com",
+      projectId: "appdomain-5bc76",
+      storageBucket: "appdomain-5bc76.appspot.com",
+      messagingSenderId: "854714021617",
+      appId: "1:854714021617:web:3631bc9729ca4d87d49b50",
+      measurementId: "G-721Y65S2FV"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    import {getDatabase, set, get, update, remove, ref, child}
+    from "https://www.gstatic.com/firebasejs/9.11.0/firebase-database.js"
+
+    const db = getDatabase();
+    //This is a text field
+    var enterUser = document.querySelector("#searchUser");
+    var addUserName = document.querySelector("#addUserName");
+    var addUserPosition = document.querySelector("#addUserPosition");
+    var addUserID = document.querySelector("#addUserID");
+
+</script>
+
+<!-- Functions to add and remove profile pic -->
+<script>
+      // This function displays the pre-selected picture while also hiding the profile temporary picture:
+      function showPic() {
+
+        document.getElementById('adminPic')
+                .style.display = "block";
+  
+        document.getElementById('profile')
+                .style.display = "none";
+        }
+  
+      // This function displays the profile temporary picture while also hiding the pre-selected picture:
+      function hidePic() {
+  
+        document.getElementById('profile')
+                .style.display = "block";
+  
+        document.getElementById('adminPic')
+                .style.display = "none";
+        }
+</script>
+
+<script>
+var myInput = document.getElementById("psw");
+var letter = document.getElementById("letter");
+var number = document.getElementById("number");
+var special = document.getElementById("special");
+var length = document.getElementById("length");
+
+/* <!-- When the user clicks on the password field, show the message box */
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+/* <!-- When the user clicks outside the password field, hide the message box */
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+
+/* <!-- When the user starts to type something inside the password field */
+myInput.onkeyup = function() {
+
+  /* <!-- Validate starting letter (recognizes a letter being used but NOT if it's first. Must fix) */
+  var startingLetter = /[a-z,A-Z]/g;
+  if(myInput.value.match(startingLetter)) {
+    letter.classList.remove("invalid");
+    letter.classList.add("valid");
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+  }
+
+  /* <!-- Validate numbers */
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+
+  /* <!-- Validate special character */
+  var specials = /[_,.,&,#,@]/g;
+  if(myInput.value.match(specials)) {
+    special.classList.remove("invalid");
+    special.classList.add("valid");
+  } else {
+    special.classList.remove("valid");
+    special.classList.add("invalid");
+  }
+
+  /* <!-- Validate length */
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}
+</script>
+
+<script>
+
+/* this block of code is responsible for the "forgot password" button displaying and hiding the main body required to fill out said information. */
+const forgotPassword = document.getElementById("forgotPassword");
+
+forgotPassword.addEventListener("click", () => {
+const createNewUser = document.getElementById("forgetPasswordBody");
+
+if (forgetPasswordBody.style.display === "block") {
+
+forgetPasswordBody.style.display = "none";
+} else {
+
+forgetPasswordBody.style.display = "block";
+    }
+});
+
+
+//this function will display what is being typed into the password textbox when "Show password" checkbox is checked.
+function showingPassword() {
+var showing = document.getElementById("psw");
+
+if (showing.type === "password") {
+showing.type = "text";
+} else {
+showing.type = "password";
+    }
+}
+</script>
+
+<script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
+
+
+  // This function will display the specified tab of the form and fix the Previous/Next buttons:
+function showTab(n) {
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next &raquo;";
+  }
+  fixStepIndicator(n)   //... and run a function that will display the correct step indicator:
+}
+
+
+  // This function will figure out which tab to display and exit the function if any field in the current tab is invalid:
+function nextPrev(n) {
+  var x = document.getElementsByClassName("tab");
+
+  if (n == 1 && !validateForm()) return false;
+  x[currentTab].style.display = "none";   // Hide the current tab:
+  currentTab = currentTab + n;    // Increase or decrease the current tab by 1:
+
+  if (currentTab >= x.length) {   // if you have reached the end of the form, the form gets submitted:
+    document.getElementById("forgetPasswordBody").submit();
+    return false;
+  }
+  showTab(currentTab);    // Otherwise, display the correct tab:
+}
+
+
+// This function deals with validation of the form fields
+function validateForm() {
+  var tab, input, i, valid = true;
+  tab = document.getElementsByClassName("tab");
+  input = tab[currentTab].getElementsByTagName("input");
+
+  for (i = 0; i < input.length; i++) {    // A loop that checks every input field in the current tab:
+    if (input[i].value == "") {     // If a field is empty add an "invalid" class to the field and set the current valid status to false
+      input[i].className += " invalid";
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+
+  // This function removes the "active" class of all steps and adds the "active" class on the current step:
+function fixStepIndicator(n) {
+  var i, x = document.getElementsByClassName("step");
+
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+
+  x[n].className += " active";
+}
+</script>
+</body>
+</html>

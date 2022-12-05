@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>sign_up</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+</head>
+<body>
+
+<section>
+    <style>
+
+/* Added for our Band style 
+      .Band{
+        background-color: Beige ;
+        padding: 30px ;
+        border: 0px LightGrey ;
+        }*/
+
+/* Added for our login style */
+      .Login{
+        background-color: Beige ;
+        margin: 25px;
+        width: 300px;
+        height: 770px;
+        border: 0px LightGrey ;
+        text-align: left;
+        }
+
+      #created{
+        display: none;
+        background-color: Beige ;
+        margin: 10px;
+        width: 650px;
+        height: 100px;
+        border: 0px LightGrey ;
+        border-radius: 5px 50px 5px 5px;
+        text-align: center;
+        }      
+      nav{
+          display: flex;
+          background-color: beige;
+          justify-content: space-around;
+          align-items: center;
+          min-height: 8vh;
+          position: relative;
+      }
+      
+      .username{
+          margin: 5vh 15vh 0px 0px;
+      } 
+
+      label {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+      input {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+      select {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+</style>
+<!-- Navbar with logo and buttons-->
+<nav>
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="app_logo.png" id="Logo"></a>
+  </div>
+  <div class="welcome-txt">
+      <h2>  Fast Accounting Happens Here! </h2>
+  </div>
+  
+
+ <!-- Added an empty profile pic with the option of switching to the pre-set pic (SHOULD be changed!)-->
+ <img src="profile.jpeg" class="profile" type="button" id="profile" data-bs-toggle="dropdown"><span class="caret"></span>
+
+<!-- Page Links under nav -->
+
+<div class="username">
+      <!-- To load username when page is loaded -->
+      <script>
+          var showingUserFirstName = document.getElementById('userFirstName');
+          document.write(showingUserFirstName);
+      </script>
+  
+</div>
+</nav>
+
+<div>
+      <div class="nav-links">
+          <li><a href="#">Placeholder</a></li>
+          <li><a href="#">Self Help</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="Login.html">Sign in</a></li>
+      </div>
+  </div>
+
+<!-- Added the sign-up body style to hold all the required textboxes, checkboxes and others -->
+     <center>
+ <form class="Login">
+  <div class="form-group col-md-11">
+
+      <!-- Added Email textbox -->
+<p><label for="userEmail">Email</label>
+      <input type="username" class="form-control" id="userEmail" placeholder="Example@Email.com" required>
+
+    <!-- Added first name textbox -->
+      <label for="userFirstName">First Name</label>
+      <input type="username" class="form-control" id="userFirstName" placeholder="FName" required>
+
+    <!-- Added last name textbox -->
+      <label for="userLastName">Last Name</label>
+      <input type="username" class="form-control" id="userLastName" placeholder="LName" required>
+
+    <!-- Added create password with requirements -->
+      <label for="createPsw">Create Password</label>
+      <input type="password" class="form-control" id="createPsw" name="createPsw"
+             pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[_.&#@]).{8,}" maxlength="8" placeholder="P@55w_rd"
+             title="Must contain at least one uppercase or lowercase letter at the start,
+             one number, a special character, and at least 8 characters at minimum required" required>
+
+    <!-- Added confirm password with requirements -->
+      <label for="confirmPsw">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPsw" name="confirmPsw"
+             pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[_.&#@]).{8,}" maxlength="8" placeholder="P@55w_rd"
+             title="Must contain at least one uppercase or lowercase letter at the start,
+             one number, a special character, and at least 8 characters at minimum required" required>
+
+    <!-- Added show passwords checkbox -->
+      <input type="checkbox" class="form-check-input" onclick="showingPasswords()">Show Passwords <br><br>
+
+    <!-- Added a "choose image" option -->
+    <label for="userImage">Choose a profile picture:</label>
+<input type="file" id="userImage" name="userImage" accept="image/png, image/jpeg"><br><br>
+
+    <!-- Added a dropdown option for the security questions -->
+      <label for="securityQuestions">Choose a Security Question</label>
+    <form>
+    <select id="securityQuestions" class="form-select" >
+        <option selected>Choose a Question:</option>
+        <option value="Question(1)">What is the name of your first pet?</option>
+        <option value="Question(2)">What is your mothers maiden name?</option>
+        <option value="Question(3)">What College did you go to?</option>
+    </select>
+    </form>
+
+      <!-- Added a type the answer textbox for the security question -->
+      <label for="securityAnswers">Write Out Your Security Answer</label>
+      <input type="text" class="form-control" id="securityAnswers" placeholder="Baby_Dont_HurtMe"
+             title="Please type an answer for said question" required>
+
+      <!-- Added an address textbox -->
+      <label for="userAddress">Address</label>
+      <input type="username" class="form-control" id="userAddress" placeholder="123 Example Street" required>
+
+      <!-- Added a date of birth select option -->
+      <label for="userDateOfBirth">Date of Birth</label>
+      <input type="date" class="form-control" id="userDateOfBirth" min="1900-01-01" max="2022-12-31" placeholder="XX/XX/XXXX" required>
+
+      <!-- Added a sign-up submit button -->
+      <!-- Add onclick link to homepage -->
+      <span style="position: relative; top: 15px; left: 35%">
+        <!-- Add onclick link to show username -->
+      <button type="submit" id="submit" class="btn btn-primary" value="Submit" onclick="showUserName()">Sign up</button></span>
+
+  </div>
+         </form>
+     </center>
+
+    <!-- Added confirmation block style to alert user when account has been created and email has been sent -->
+    <center>
+      <div id="created">
+        <br>
+        <h3>Email has been sent. Waiting for Administrator approval:</h3>
+            <p><b>Check Email in 1-2 business days for validation</b></p>
+      </div>
+         </center>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <h1>Contact Us!</h1>
+  <ul> 
+      <a href="#">PlaceHolder</a>
+      <a href="#">PlaceHolder</a>
+      <a href="#">PlaceHolder</a>
+      
+  </ul>
+ 
+  
+</footer>
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+  import { getFirestore, doc, addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // ********** Alexander Day's Database **********
+  const firebaseConfig = {
+    apiKey: "AIzaSyAswcBVoFfQx746ZSArJw6jZRqfa3ZmBbI",
+    authDomain: "swe-4713-application-domain.firebaseapp.com",
+    projectId: "swe-4713-application-domain",
+    storageBucket: "swe-4713-application-domain.appspot.com",
+    messagingSenderId: "210297298562",
+    appId: "1:210297298562:web:815b3cc913460d968b5e9b"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  // Initialize Cloud Firestore and get a reference to the service
+  const db = getFirestore();
+
+  const colRef = collection(db, 'Users')
+
+        //get collection data
+        getDocs(colRef).then((snapshot) => {
+        let users = []
+        snapshot.docs.forEach((doc) => {
+            users.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(users);
+       })
+       .catch(err => {
+        console.log(err.message);
+    });
+
+    // addUserBtn.addEventListener('click',  InsertData);
+
+    //adding documents
+    const addNewUsers = document.querySelector('.Login')
+    addNewUsers.addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      addDoc(colRef, {
+        Email: addNewUsers.userEmail.value,
+        FirstName: addNewUsers.userFirstName.value,
+        LastName: addNewUsers.userLastName.value,
+        Password: addNewUsers.createPsw.value,
+        SecurityQuestion: addNewUsers.securityQuestions.value,
+        SecurityAnswer: addNewUsers.securityAnswers.value,
+        Address: addNewUsers.userAddress.value,
+        DateOfBirth: addNewUsers.userDateOfBirth.value,
+      })
+      .then(() => {
+        addNewUsers.reset()
+        alert("Data Added Successfully!")
+      })
+      .catch((error) => {
+        alert(error)
+      })
+    })
+
+</script>
+
+<script>
+// This function will allow the "Show Passwords" checkbox to reveal what is being typed out in the create/confirm password textboxes:
+function showingPasswords() {
+var showingCreate = document.getElementById("createPsw");
+var showingConfirm = document.getElementById("confirmPsw");
+
+if (showingCreate.type === "password") {    // if the textbox is registered as a type password, change it to text:
+showingCreate.type = "text";
+showingConfirm.type = "text";
+} else {    // else they switch back once unchecked:
+showingCreate.type = "password";
+showingConfirm.type = "password";
+    }
+}
+
+
+var create_password = document.getElementById("createPsw")
+  , confirm_password = document.getElementById("confirmPsw");
+
+// This function checks to see if both the created and confirmed passwords match:
+function validatePassword(){
+  if(create_password.value != confirm_password.value) {     // if the created password is not the same as the confirmed one:
+    confirm_password.setCustomValidity("Passwords Don't Match");    // Display a warning stating as such:
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+create_password.onchange = validatePassword;    //Constantly checks to see if they match once elements have been changed:
+confirm_password.onkeyup = validatePassword;    //Checks if they match as the user releases a key:
+
+// Shows user's first name and lastname
+function showUserName() {
+
+  document.getElementById('userFirstName')
+          .style.display = "block";
+
+  document.getElementById('userLastName')
+          .style.display = "block";
+  }
+</script>
+</body>
+</html>

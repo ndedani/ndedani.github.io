@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@aws-amplify/cli": "^10.4.0",
+    "@aws-sdk/client-ses": "^3.208.0",
+    "aws-sdk": "^2.1252.0",
+    "firebase": "^9.14.0"
+  },
+  "name": "swe4713appdomain",
+  "version": "1.0.0",
+  "main": "ses_sendemail.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndedani/SWE4713appdomain.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ndedani/SWE4713appdomain/issues"
+  },
+  "homepage": "https://github.com/ndedani/SWE4713appdomain#readme",
+  "description": ""
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VIEW Entries</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- link TO WebNavBar.css-->
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+   <!-- software brand and Logo-->
+   <div id="Band">
+      <h2> <img src="app_logo.png" id="Logo"> <font size="+1.50">  <center>  Welcome Admin! </center>  </font></h2>
+  </div>
+
+  <br> 
+  <center> 
+    <h2> <font size="+1.50"> GENERAL LEDGERS  <br> Don's Dynamite <br> <span id="tabLarge"></span> October 2022</h2>
+  </center>
+
+<center>
+  <span id="tabLarge"></span>
+  
+    <!-- onclick="location.href='add_transaction.html'"--> 
+  <button id="RemoveEntry"> <font size="+1.50" onclick="removeTransaction()">  Remove Transaction</button>
+    <button id="AddEntry"> <font size="+1.50" onclick="location.href='add_transactions.html'">  Add Transaction</button> 
+</center>
+
+  <!-- 
+  //SORT (DATE, AMOUNT), FILTER (BY ACCOUNT, DEBITS ONLY, CREDITS ONLY), SHOW (TIME PERIOD: PAST 6 MONTHS, PAST YEAR)
+  -->
+
+<!-- 
+  <style id="#tableFormat">
+    table, th, td {
+      border:1px solid;
+      border-collapse: collapse;
+      column-span: 2;
+      padding:15px;
+    }
+    </style>
+  -->
+
+
+
+<!-- 
+<div id="vBand">
+    <center>  
+        <h2> <font size="+1.00">  Feature List! </h2>
+        <button style="font-size:16px; border: none; background-color: inherit; cursor: pointer;" onclick="sortOptions()"> Sort <i class="fa fa-sort"></i></button> 
+        
+        <div id="sortView" style="display:none";> 
+          <button type="radio" onclick="sortTableAccount()"> Account Number</button>
+          <button onclick="sortTableBalance()"> Account Balance</button> 
+          <button onclick="sortTableAccountType()"> Account <br>Type</button> 
+        </div>
+        
+        <button style="font-size:16px; border: none; background-color: inherit; cursor: pointer;"> Filter <i class="fa fa-filter"></i></button> <br> <br>   
+      </font>
+    </center>  
+  </div>
+-->
+
+<br> <br>
+<center>
+  <div style="display:none;" id="searchTransactionDivision">
+    reference number
+    <input type="number" id="searchTransaction">
+    <p id="transactiondetails"></p>
+    <button id="removeTransaction" style="display:none;">remove</button>
+    <button id="searchRefNum"> Search</button>
+    
+  </div>
+</center>
+
+<script>
+  function removeTransaction()
+  {
+    document.getElementById('searchTransactionDivision').style.display="block";
+    
+  }
+</script>
+
+ <!-- FIREBASE CONFIGURATION-->
+ <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+  import{ getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField }
+  from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAswcBVoFfQx746ZSArJw6jZRqfa3ZmBbI",
+    authDomain: "swe-4713-application-domain.firebaseapp.com",
+    databaseURL: "https://swe-4713-application-domain-default-rtdb.firebaseio.com",
+    projectId: "swe-4713-application-domain",
+    storageBucket: "swe-4713-application-domain.appspot.com",
+    messagingSenderId: "210297298562",
+    appId: "1:210297298562:web:815b3cc913460d968b5e9b"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  const db = getFirestore(app);
+
+  let transactiondetails = document.getElementById("transactiondetails");
+  let searchRefNum = document.getElementById("searchRefNum");
+  let searchTransaction = document.getElementById("searchTransaction");
+  
+  let removeTransaction = document.getElementById("removeTransaction");
+
+  //GETTING INFO from the firebase
+  //////// BASICALLLY RETREIVING THE DATA 
+  async function getaDoc()
+  {
+    var ref = doc(db, "Transactions", searchTransaction.value);
+    const docSnap = await getDoc(ref); 
+    if (docSnap.exists())
+    {
+      transactiondetails.innerHTML= "Transaction Details Account Number" +  docSnap.data().AccountNumber+
+      "Date: " + docSnap.data().Date+
+      "Account Type: " + docSnap.data().AccountType+
+      "Account Number: " + docSnap.data().AccountNumber+
+      "Account Details: " + docSnap.data().AccountDetails+
+      "Reference Number: " + docSnap.data().ReferenceNumber+
+      "Client: " + docSnap.data().Client+
+      "Debit: " + docSnap.data().Debit+
+      "Credit: " + docSnap.data().Credit+
+      "Balance: " + docSnap.data().Balance;
+
+      //make remove button visible only when the transaction to be removed is found 
+      document.getElementById('removeTransaction').style.display="block";
+      
+      
+    }
+    else{
+        transactiondetails.innerHTML="<span style='color:red;'</span>"+"Incorrect Reference Number";
+        alert("Incorrect Reference Number");
+    }
+  }
+
+
+
+  //DELETING THE DATA
+  async function deleteaDoc()
+  {
+    var ref = doc(db, "Transactions", searchTransaction.value);
+    const docSnap = await getDoc(ref); 
+
+    //IF DOCUMENT DOES NOT EXIST
+    //THIS IS NOT NEEDED THOUGH BECASUE THE REMOVE BUTTON ISN'T VISIBLE IF DATA DOESNT EXIST
+    if (!docSnap.exists())
+    {
+      alert("Data does not exist!");
+      return;
+    }
+
+    await deleteDoc(ref)
+    .then(()=>{
+      alert("data deleted successfully");
+    })
+  
+  }
+
+  searchRefNum.addEventListener("click", getaDoc);
+  removeTransaction.addEventListener("click", deleteaDoc);
+
+  </script>
+
+</body>
+</html>

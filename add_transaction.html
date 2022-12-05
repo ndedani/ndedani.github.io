@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Transaction</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+    /* This style is to remove the up and down awrrows from numeric fields 
+    From website:  https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+    </style>
+    <!-- End of style-->
+
+<link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+
+</head>
+
+<body>
+
+<div> <!-- add brand logo here--> </div>
+
+<div class="Band">
+    <a href="index.html">
+      <img src="app_logo.png" id="Logo"></a>
+  
+      <h2>  Welcome Admin!</h2>
+  </div>
+
+    <h2>Add Transaction</h2>
+   <!-- software brand and Logo-->
+
+<div>
+  <p>Date: <input type="date" id="entryDate"></p>
+  <p>Account Number: <input type="number" id="entryAccNum"> </p>
+  <p>Account Type:
+  <select name="Acc Name" id="entryAccType">
+    <option value="Checking">Checking</option>
+    <option value="Savings">Saving</option>
+  </select></p>
+  <p>Account Details: <input type="text" id="entryAccDetails"> </p>
+  <p> Reference Number: <input type="number" id="entryRefNum">  </p>
+  <p>Vendor/Client: <input type="text" id="entryClient"> </p>
+ <p> Debit:  <input type="number" id="entryDebit">  </p>
+<p>credit: <input type="number" id="entryCredit">  </p>
+<p> Balance: <input type="number" id="entryBalance"> </p>
+</div>
+
+<br> <br>
+<p>
+  <button id="addTransaction"> Add Transaction </button>
+</p>
+ 
+  <!-- FIREBASE CONFIGURATION-->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+    import{ getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField }
+    from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAswcBVoFfQx746ZSArJw6jZRqfa3ZmBbI",
+      authDomain: "swe-4713-application-domain.firebaseapp.com",
+      databaseURL: "https://swe-4713-application-domain-default-rtdb.firebaseio.com",
+      projectId: "swe-4713-application-domain",
+      storageBucket: "swe-4713-application-domain.appspot.com",
+      messagingSenderId: "210297298562",
+      appId: "1:210297298562:web:815b3cc913460d968b5e9b"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const db = getFirestore(app);
+
+
+    let entryDate = document.getElementById("entryDate");
+    let entryAccNum = document.getElementById("entryAccNum")
+    let entryAccType = document.getElementById("entryAccType");
+    let entryAccDetails = document.getElementById("entryAccDetails");
+    let entryRefNum = document.getElementById("entryRefNum");
+    let entryClient = document.getElementById("entryClient");
+    let entryDebit = document.getElementById("entryDebit");
+    let entryCredit = document.getElementById("entryCredit");
+    let entryBalance = document.getElementById("entryBalance");
+
+
+    let addTransaction = document.getElementById("addTransaction");
+
+    //adding documents 
+    async function AddDocument_CustomID()
+    {
+      var ref = doc(db, "Transactions", entryRefNum.value);
+
+      const docRef = await setDoc(
+        ref, {
+          Date: entryDate.value, 
+          AccountNumber: entryAccNum.value,
+          AccountType: entryAccType.value,
+          AccountDetails: entryAccDetails.value,
+          ReferenceNumber: entryRefNum.value,
+          Client: entryClient.value,
+          Debit: entryDebit.value,
+          Credit: entryCredit.value,
+          Balance: entryBalance.value
+        }
+      )
+      .then(()=>{
+        alert("data added successfully");
+      })
+    .catch((error)=>{alert("unsuccessfull "+ error);
+      });
+    }
+
+
+    //adding event listeners
+    addTransaction.addEventListener("click", AddDocument_CustomID);
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+
+    <script>
+      function passvalues()
+      {
+        var userFound=document.getElementById("serialnumber").value;
+        localStorage.setItem("textvalue", userFound);
+        return false;
+      }
+    </script>
+</head>
+<body>
+
+  <!-- Navbar with logo and buttons-->
+  <!-- <nav>
+    <div class="logo-container">
+      <a href="index.html" target="_blank">
+        <img src="app_logo.png" id="Logo"></a>
+    </div>
+    <div class="welcome-txt">
+        <h3>Welcome Admin!</h2>
+    </div>
+    <ul class="nav-links">
+        <li><a href="#">placeholder</a></li>
+        <li><a href="#">placeholder</a></li>
+        <li><a href="#">placeholder</a></li>
+        <li><a href="#">placeholder</a></li>
+    </ul>
+
+    <!-- Added an empty profile pic with the option of switching to the pre-set pic (SHOULD be changed!) --
+    <img src="profile.jpeg" class="profile" type="button" id="profile" data-bs-toggle="dropdown"><span class="caret"></span>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><center><a type="button" onclick="showPic()"> Add Picture</a></center></li>
+    </ul>
+
+
+
+    <!-- Added a pre-set pic to go over the empty profile pic (SHOULD be changed! This was only temporary.)--
+    <img src="admin_pic.png" class="profilepic" id="adminPic" data-bs-toggle="dropdown"><span class="caret"></span>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><center><a type="button" onclick="hidePic()"> Remove Picture</a></center></li>
+    </ul>
+</nav>
+
+
+<!-- Our software brand and Logo is here--
+    <div id="Band">
+        <h2> <img src="app_logo.png" id="Logo"> <font size="+1.50">  <center>  Welcome Admin! </center>  </font></h2>
+    </div> -->
+
+    <!-- New Navbar with logo and buttons-->
+<nav>
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="app_logo.png" id="Logo"></a>
+  </div>
+  <div class="welcome-txt">
+      <h2>  Fast Accounting Happens Here! </h2>
+  </div>
+  
+
+ <!-- Added an empty profile pic with the option of switching to the pre-set pic (SHOULD be changed!)-->
+ <img src="profile.jpeg" class="profile" type="button" id="profile" data-bs-toggle="dropdown"><span class="caret"></span>
+
+<!-- Page Links under nav -->
+
+<div class="username">
+      <!-- To load username when page is loaded -->
+      <script>
+          var showingUserFirstName = document.getElementById('userFirstName');
+          document.write(showingUserFirstName);
+      </script>
+  
+</div>
+</nav>
+
+<div>
+      <div class="nav-links">
+          <li><a href="#">Placeholder</a></li>
+          <li><a href="#">Self Help</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="Login.html">Sign in</a></li>
+      </div>
+  </div>
+
+<!-- Sidenav Menu from W3 -->
+<!-- https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- Use any element to open the sidenav -->
+<span onclick="openNav()"><button >≡</button></span>
+
+
+      <script>
+          /* Set the width of the side navigation to 250px */
+  function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  /* Set the width of the side navigation to 0 */
+  function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+  }
+</script>
+
+    <br> </br>
+
+
+<center>
+  <!-- These were divided into differnet sections to hide one and still show another one-->
+  <br>
+  <p id="searchSection">
+      <input id="searchUser" type="text"> <br><br>
+      <button id="searchUserBtn"> Search User</button>
+      <br> <br> <br> <br> <br>
+  </p>
+
+  <p id="nameFoundSection">
+    Users Found:   <br>
+    <button id="userFoundBtn"> </button> 
+  </p>
+
+  <p id="resultSection"> <style> #tab1{display: inline-block; margin-left: 10px;} </style>
+      update here <br>
+      Name: <input type="text" id="findUserName" value=""> <span id="tab1"> </span>
+      ID: <input type="text" id="findUserID" value=""> <span id="tab1"> </span>
+      Position: <input type="text"  id="findUserPosition" value=""> <span id="tab1"> </span>
+      DOB <input type="text"  id="findUserDOB" value=""> <span id="tab1"> </span>
+      <button id="updateUserBtn"> UPDATE</button>  <br>
+      <button id="backTOadmin" onclick="location.href='admin.html'"> Home</button>
+      <button id="backTOadmin" onclick="location.href='search_user.html'"> Search </button>
+  </p>
+</center>
+
+
+  <br>
+  <!-- Footer -->
+<footer class="footer">
+  <h1>Contact Us!</h1>
+  <ul> 
+      <a href="#">PlaceHolder</a>
+      <a href="#">PlaceHolder</a>
+      <a href="#">PlaceHolder</a>
+      
+  </ul>
+ 
+  
+</footer>
+  <!-- <p id="findUserName" type="text"></p> -->
+<script type="module">
+
+  document.getElementById("resultSection").style.display="none";
+  document.getElementById("nameFoundSection").style.display="none";
+  
+
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCLeXpBcmY50646HWq9RkVjf2tNcPSfXCA",
+      authDomain: "appdomain-5bc76.firebaseapp.com",
+      databaseURL: "https://appdomain-5bc76-default-rtdb.firebaseio.com",
+      projectId: "appdomain-5bc76",
+      storageBucket: "appdomain-5bc76.appspot.com",
+      messagingSenderId: "854714021617",
+      appId: "1:854714021617:web:3631bc9729ca4d87d49b50",
+      measurementId: "G-721Y65S2FV"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    //Everything above this is firebase config, I know nothing about it 
+    //take this comment off 
+    import {getDatabase, set, get, update, remove, ref, child}
+    from "https://www.gstatic.com/firebasejs/9.11.0/firebase-database.js"
+
+    const db = getDatabase();
+    //This is a text field
+    var enterUser = document.querySelector("#searchUser");
+   
+    //these are not assigned. but are text fields
+    //var findUserID = document.querySelector("#findUserID");
+    
+    var findUserName = document.querySelector("#findUserName");
+    var findUserPosition = document.querySelector("#findUserPosition");
+    var findUserID = document.querySelector("#findUserID");
+    var findUserDOB = document.querySelector("#findUserDOB");
+    var searchSection = document.querySelector("#searchSection");
+    var resultSection = document.querySelector("#resultSection");
+    var nameFoundSection = document.querySelector("#nameFoundSection");
+    
+    //This is a button 
+    var searchUserBtn = document.querySelector("#searchUserBtn");
+    var updateUserBtn = document.querySelector("#updateUserBtn");
+    var userFoundBtn = document.querySelector("#userFoundBtn");
+   
+    function ShowData()
+    {
+      //because you're referencing to a spcific reference in database
+      const dbref= ref(db);
+      get(child(dbref, "Users/"+ enterUser.value))
+      .then((snapshot)=>{
+        if(snapshot.exists())
+        { 
+          document.getElementById("searchSection").style.display="none";
+          document.getElementById("nameFoundSection").style.display="none";
+          document.getElementById("resultSection").style.display="block";
+          userFoundBtn.style.display="none";
+          findUserName.value= snapshot.val().Name;
+          findUserPosition.value = snapshot.val().Position;
+          findUserID.value = snapshot.val().ID;
+          findUserDOB.value = snapshot.val().Date;
+        }
+        else
+        {
+          document.getElementById("nameFoundSection").style.display="none";
+          alert("No Data Found!");
+        }
+      })
+      .catch((error)=>{alert(error)})
+
+    }
+
+    function FindData()
+    {
+      //because you're referencing to a spcific reference in database
+      const dbref= ref(db);
+      get(child(dbref, "Users/"+ enterUser.value))
+      .then((snapshot)=>{
+        if(snapshot.exists())
+        { 
+          document.getElementById("nameFoundSection").style.display="block";
+          userFoundBtn.innerHTML = snapshot.val().Name;
+
+        }
+        else
+        {
+          alert("No Data Found!");
+        }
+      })
+      .catch((error)=>{alert(error)})
+    }
+
+    
+    function UpdateData()
+    {
+      update(ref(db, "Users/" + enterUser.value), {
+        Name: findUserName.value, 
+        Position: findUserPosition.value,
+        ID: findUserID.value,
+        Date: findUserDOB.value
+      })
+      .then(()=>{
+        alert("data updated success!");
+      })
+      .catch((error)=>{
+        alert(error);
+      });
+
+    }
+    searchUserBtn.addEventListener('click', FindData);
+    userFoundBtn.addEventListener('click', ShowData);
+    updateUserBtn.addEventListener('click', UpdateData);
+  </script>
+
+</body>
+</html>
+
+
+<!-- ADDITIONAL INFO
+    EXAMPLE:
+<section>
+    <b> <font size="+2.0"> <center>Lena Tory </center> </font>  </b>
+    <br> </br>
+    <img src="person1.png" id="ProfilePics">
+    <p> Name: <input type="text" placeholder="Lena Tory">
+        <br> Role: <input type="text" placeholder="Software Engineer"></br>
+        Start Date:
+        <br> Status: <input type="radio" id="status_active"> <label id="status_active"> Active </label>
+        <input type="radio" id="status_deactive"> <label id="status_deactive"> Deactive </label>
+        </br>
+        Instituition: Don's Dynamite
+    </p>
+</section>
+<button class="button dem" onclick="location.href='user_selected.html'"> Save </button>
+-->
+
+
+
+  <!-- MAYBE NOT NEEDED
+<form action="display.html" method="get">
+        <input type="text" name="serialNumber" />
+        <input type="submit" value="Submit" />
+</form>
+
+
+<button id="buttonPlace" onclick="location.href='user_selected.html'""> UPDATE</button> 
+in firebase: 
+ var buttonPlace = document.querySelector("#buttonPlace");
+ inside function FindData: 
+            buttonPlace.innerHTML = snapshot.val().Name;
+-->
+
+

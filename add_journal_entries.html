@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Journal Entires</title>
+
+<!-- Updated upstream, adding bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+
+</head>
+<body>
+<section>
+
+<!-- Following will add the beige band on top with "Welcome Admin User" text -->
+<!-- Navbar with logo and buttons-->
+<nav>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="app_logo.png" id="Logo"></a>
+    </div>
+    <div class="welcome-txt">
+        <h2> Add Journal Entries </h2>
+    </div>
+    
+
+   <!-- Added an empty profile pic with the option of switching to the pre-set pic (SHOULD be changed!)-->
+   <img src="profile.jpeg" class="profile" type="button" id="profile" data-bs-toggle="dropdown"><span class="caret"></span>
+
+<!-- Page Links under nav -->
+ 
+<div class="username">
+        <!-- To load username when page is loaded -->
+        <script>
+            var showingUserFirstName = document.getElementById('userFirstName');
+            document.write(showingUserFirstName);
+        </script>
+    
+</div>
+</nav>
+
+<div>
+    <div class="nav-links">
+        <li><a href="#">Placeholder</a></li>
+        <li><a href="#">Self Help</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="Login.html">Sign in</a></li>
+    </div>
+</div>
+<!-- Sidenav Menu from W3 -->
+<!-- https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+<div id="mySidenav" class="sidenav" style="white-space: nowrap;">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#" onclick="location.href='index.html'">Home</a>
+    <a href="#">Email</a>
+    <a href="#" onclick="location.href='view_accounts.html'">Chart of Accounts</a>
+    <a href="#" onclick="location.href='journal_entries.html'">Journal</a>
+    </div>
+
+<!-- Use any element to open the sidenav -->
+<span onclick="openNav()"><button id="sideBarBtn">≡</button></span>
+
+
+    <script>
+        /* Set the width of the side navigation to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>  
+
+<style>
+        .addJournalEntryBody{
+        display:block;
+        background-color: rgb(236, 236, 236);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+        width: 1000px;
+        height: 500px;
+        border: 10px Beige;
+        border-style: solid;
+        text-align: left;
+        }
+
+        label {
+            display: inline-block;
+            width: 140px;
+            margin-left: 10px;
+        }
+
+        #createBtn{ 
+            position: relative; 
+            border: 2px solid #ccc; 
+            background-color: rgb(206, 235, 219); 
+            float: right; 
+            margin-right: 20px;
+            display:inline;
+        }
+
+        #resetBtn{ 
+            position: relative; 
+            border: 2px solid #ccc; 
+            background-color: rgb(248, 237, 201); 
+            float: right; 
+            margin-right: 20px;
+            display:inline;
+        }
+
+</style>
+
+<form class="addJournalEntryBody" id="addJournalEntryBody">
+<div>
+
+    <p><label>EntryID:</label> <input id="EntryID" type="number" placeholder="Ex: 15" oninput="success()" required></p>
+    <p><label>Date Submitted:</label> <input id="DateSubmitted" type="date" oninput="success()" required></p>
+    <p><label>Submitted By:</label> <input id="SubmittedBy" type="text" placeholder="Ex: Tuser2022" oninput="success()" required></p>
+    <p><label>Approved By:</label> <input id="ApprovedBy" type="text" placeholder="Ex: Tuser2022" oninput="success()" required></p>
+    <p><label>Account Name:</label> <input id="AccountName" type="text" placeholder="Ex: Assets" oninput="success()" required></p>
+    <p><label>Description:</label> <input id="Description" type="text" placeholder="Ex: Because I like money" oninput="success()" required></p>
+    <p><label>Accounts Debited:</label> <input id="AccountsDebited" type="number" placeholder="Only numbers" oninput="success()" required></p>
+    <p><label>Accounts Credited:</label> <input id="AccountsCredited" type="number" placeholder="Only numbers" oninput="success()" required></p>
+    <p><label>Attachment:</label> <input id="Attachment" type="text" placeholder="For files soon" oninput="success()" required></p>
+
+    <hr>
+    <button id="resetBtn" type="button">Reset</button>
+    <button id="createBtn" type="button" disabled>Submit New Journal Entry</button>
+</div>
+</form>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <h1>Contact Us!</h1>
+    <ul> 
+        <a href="#">PlaceHolder</a>
+        <a href="#">PlaceHolder</a>
+        <a href="#">PlaceHolder</a>
+        
+    </ul>
+   
+</footer>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+    import { getFirestore, collection, getDoc, getDocs, onSnapshot, deleteDoc, 
+        addDoc, doc, query, setDoc, where } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // ********** Alexander Day's Database **********
+    const firebaseConfig = {
+      apiKey: "AIzaSyAswcBVoFfQx746ZSArJw6jZRqfa3ZmBbI",
+      authDomain: "swe-4713-application-domain.firebaseapp.com",
+      projectId: "swe-4713-application-domain",
+      storageBucket: "swe-4713-application-domain.appspot.com",
+      messagingSenderId: "210297298562",
+      appId: "1:210297298562:web:815b3cc913460d968b5e9b"
+    };
+  
+    // Initialize Cloud Firestore
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(app);
+
+    //getting all of our references
+    let EntryID = document.getElementById("EntryID");
+    let DateSubmitted = document.getElementById("DateSubmitted");
+    let SubmittedBy = document.getElementById("SubmittedBy");
+    let ApprovedBy = document.getElementById("ApprovedBy");
+    let AccountName = document.getElementById("AccountName");
+    let Description = document.getElementById("Description");
+    let AccountsDebited = document.getElementById("AccountsDebited");
+    let AccountsCredited = document.getElementById("AccountsCredited");
+    let Attachment = document.getElementById("Attachment");
+
+    let resetBtn = document.getElementById("resetBtn");
+    let createBtn = document.getElementById("createBtn");
+
+    //Adding the Document
+    async function AddPendingJournalEntry() {
+        const addNewUsers = document.querySelector('.addJournalEntryBody')
+
+        const docRef = await setDoc(doc(db, "PendingJournalEntries", EntryID.value), {
+                EntryID: EntryID.value,
+                DateSubmitted: DateSubmitted.value,
+                SubmittedBy: SubmittedBy.value,
+                ApprovedBy: ApprovedBy.value,
+                AccountName: AccountName.value,
+                Description: Description.value,
+                AccountsDebited: AccountsDebited.value,
+                AccountsCredited: AccountsCredited.value,
+                Attachment: Attachment.value
+
+            }
+        )
+        .then(() =>{
+            addNewUsers.reset()
+            document.getElementById('createBtn').disabled = true; 
+            alert("Journal Entry added successfully:");
+        })
+        .catch(() =>{
+            alert("Whoops! Something is wrong:" + error);
+        });
+    }
+
+    createBtn.addEventListener("click", AddPendingJournalEntry);
+
+    resetBtn.addEventListener("click", function() {
+        document.getElementById('createBtn').disabled = true;
+        document.getElementById("addJournalEntryBody").reset();
+    })
+
+</script>
+<script>
+    function success() {
+	 if(document.getElementById("EntryID").value==="" || document.getElementById("DateSubmitted").value===""
+     || document.getElementById("SubmittedBy").value==="" || document.getElementById("ApprovedBy").value==="" 
+     || document.getElementById("AccountName").value==="" || document.getElementById("Description").value===""
+     || document.getElementById("AccountsDebited").value==="" || document.getElementById("AccountsCredited").value===""
+     || document.getElementById("Attachment").value==="") { //This '||'' should be OR and not treated as an AND but somehow it is and somehow it works!
+            document.getElementById('createBtn').disabled = true; 
+        } else { 
+            document.getElementById('createBtn').disabled = false;
+        }
+    }
+</script>
+
+</body>
+</html>

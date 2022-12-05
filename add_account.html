@@ -1,0 +1,209 @@
+<!-- THIS IS ADMIN DASHBOARD -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Account</title>
+
+<!-- Updated upstream, adding bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+
+</head>
+
+<body>
+    <!--WELCOME  -->
+    <!-- <div id="Band">
+        <h2> <img src="app_logo.png" id="Logo"> <font size="+2.0">  <center>  Welcome Admin! </center>  </font></h2>
+    </div>
+
+    <span style="padding:10px; float:right;">
+        <!--  tabs between options--
+        <span class="tab1"> </span>
+            <b> <button type="button" class="btn" > Settings </button>
+                <!--  tabs between options--
+                <span class="tab1"> </span>
+                <button type="button" class="btn"> Notifications </button>
+                <!--  tabs between options--
+                <span class="tab1"> </span>
+                <!--Sign In  --
+                <button type="button" class="btn"> Logout  </button>
+                <!--  tabs between options--
+                <span class="tab1"> </span>
+            </b>
+    </span> -->
+
+<!-- Navbar with logo and buttons-->
+<nav>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="app_logo.png" id="Logo"></a>
+    </div>
+    <div class="welcome-txt">
+        <h2>  Add Account </h2>
+    </div>
+    
+
+   <!-- Added an empty profile pic with the option of switching to the pre-set pic (SHOULD be changed!)-->
+   <img src="profile.jpeg" class="profile" type="button" id="profile" data-bs-toggle="dropdown"><span class="caret"></span>
+
+
+<!-- Page Links under nav -->
+ 
+<div class="username">
+        <!-- To load username when page is loaded -->
+        <script>
+            var showingUserFirstName = document.getElementById('userFirstName');
+            document.write(showingUserFirstName);
+        </script>
+    
+</div>
+</nav>
+
+
+
+  <div>
+        <div class="nav-links">
+            <li><a href="#">Placeholder</a></li>
+            <li><a href="#">Self Help</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="Login.html">Sign in</a></li>
+        </div>
+    </div>
+ 
+<!-- Sidenav Menu from W3 -->
+<!-- https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+  
+  <!-- Use any element to open the sidenav -->
+  <span onclick="openNav()"><button >≡</button></span>
+  
+
+        <script>
+            /* Set the width of the side navigation to 250px */
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+    
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>   
+
+
+    <br>
+
+    <p> All Fields with aterisks is required * </p>
+
+    <br> <br>
+
+    <!-- 
+        a. Account name
+        b. Account number (must have correct starting values as discussed in class)
+        c. Account description
+        d. Normal side
+        e. Account category (e.g. asset)
+        f. Account subcategory (e.g. current assets)
+        g. Initial balance
+        h. Debit
+        i. Credit
+        j. Balance
+        k. Date/time account added
+        l. User id
+        m. Order (e.g cash can be 01)
+        n. Statement (e.g. IS (income statement), BS (balance sheet), RE(Retained Earnings statement)
+        o. Comment
+    -->
+
+    <div>
+    <style>  #appic{width: 30%;}</style>
+    <center> <img src="book.png" id="appic" > </center>
+    <br>
+    <span id="tabLarge"></span> Account Name: <input type="text">
+    <span id="tabSmall"></span> Account Number: <input type="text">
+    <span id="tabSmall"></span> Account Description: <input type="text">
+    <br> <br>
+    <span id="tabLarge"></span> Normal Side: <input type="text">
+    <span id="tabSmall"></span> Account Category: <input type="text">
+    <span id="tabSmall"></span> Account Subcategory: <input type="text">
+    <br> <br>
+    <span id="tabLarge"></span> Initial Balnce: <input type="text">
+    <span id="tabSmall"></span> Debit: <input type="text">
+    <span id="tabSmall"></span> Credit: <input type="text">
+    <br> <br>
+    <span id="tabLarge"></span> Balnce: <input type="text">
+    <span id="tabSmall"></span> Date/Time: <input type="text">
+    <span id="tabSmall"></span> User Id: <input type="text">
+    <br> <br>
+    <span id="tabLarge"></span> Order: <input type="text">
+    <span id="tabSmall"></span> Statement: <input type="text">
+    <span id="tabSmall"></span> Comment: <input type="text">
+    </div>
+    <br> <br> <br> <br>
+    
+    <center> 
+        <button id="saveAccount" onclick="location.href=''"> Save</button>
+        <br><br>
+        <button onclick="location.href='admin.html'"> Admin Dashboard </button> 
+        <br><br>
+    </center>
+
+<!-- Footer -->
+<footer class="footer">
+    <h1>Contact Us!</h1>
+    <ul> 
+        <a href="#">PlaceHolder</a>
+        <a href="#">PlaceHolder</a>
+        <a href="#">PlaceHolder</a>
+        
+    </ul>
+   
+    
+</footer>
+
+
+<!-- To get info from firebase -->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+    import { getFirestore, doc, addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // ********** Alexander Day's Database **********
+    const firebaseConfig = {
+      apiKey: "AIzaSyAswcBVoFfQx746ZSArJw6jZRqfa3ZmBbI",
+      authDomain: "swe-4713-application-domain.firebaseapp.com",
+      projectId: "swe-4713-application-domain",
+      storageBucket: "swe-4713-application-domain.appspot.com",
+      messagingSenderId: "210297298562",
+      appId: "1:210297298562:web:815b3cc913460d968b5e9b"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore();
+  
+    const colRef = collection(db, 'Users')
+    
+    var userFirstName = document.querySelector("#userFirstName");
+    var userLastName = document.querySelector("#userLastName");
+    var userFullName = userFirstName + userLastName;
+
+
+</script>
+</body>
+

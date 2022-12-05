@@ -1,0 +1,447 @@
+<!-- THIS IS ADMIN DASHBOARD -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Home</title>
+
+<!-- Updated upstream, adding bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+
+</head>
+<body>
+<section>
+    <style>
+        #writeEmailBody{
+        display:none;
+        background-color: Beige ;
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+        height: 540px;
+        border: 0px LightGrey ;
+        text-align: left;
+        }
+
+        .emailSent{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+        }
+
+        /* #status{
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            padding: 10px;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+
+        #status.success{
+            background-color: rgb(211, 250, 153);
+            padding: 10px;
+            margin-top: 10px;
+            font-size: xx-large;
+            animation: status 4s ease forwards;
+        }
+
+        #status.error{
+            background-color: rgb(250, 129, 92);
+            padding: 10px;
+            margin-top: 10px;
+            font-size: xx-large;
+            animation: status 4s ease forwards;
+        }
+
+        @keyframes status{
+            0%{
+                opacity: 1;
+                pointer-events: all;
+            }
+            90%{
+                opacity: 1;
+                pointer-events: all;
+            }
+            100%{
+                opacity: 0;
+                pointer-events: none;
+            }
+        } */
+
+</style>
+<!-- Navbar with logo and buttons-->
+<!-- <nav>
+
+
+
+
+
+
+
+    
+    <div class="logo-container">
+        <a href="index.html" target="_blank">
+          <img src="app_logo.png" id="Logo"></a>
+      </div>
+
+      <div class="welcome-txt" id="Band">
+        <h3>Welcome Admin!</h2>
+        </div>
+        
+        <ul class="nav-links">
+            <lii class="adminpage-nav-buttons"><a href="#">placeholder</a></lii>
+            <li class="adminpage-nav-buttons"><a href="#">Settings</a></li>
+            <li class="adminpage-nav-buttons"><a href="#">Notifications</a></li>
+            <li class="adminpage-nav-buttons"><a href="#">Logout</a></li>
+        </ul>
+</nav> -->
+
+
+<!-- Following will add the beige band on top with "Welcome Admin User" text -->
+<!-- Navbar with logo and buttons-->
+<nav>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="app_logo.png" id="Logo"></a>
+    </div>
+    <div class="welcome-txt">
+        <h2>  Fast Accounting Happens Here! </h2>
+    </div>
+    
+
+   <!-- Added an empty profile pic with the option of switching to the pre-set pic (SHOULD be changed!)-->
+   <img src="profile.jpeg" class="profile" type="button" id="profile" data-bs-toggle="dropdown"><span class="caret"></span>
+
+<!-- Page Links under nav -->
+ 
+<div class="username">
+        <!-- To load username when page is loaded -->
+        <script>
+            var showingUserFirstName = document.getElementById('userFirstName');
+            document.write(showingUserFirstName);
+        </script>
+    
+</div>
+</nav>
+
+  <div>
+        <div class="nav-links">
+            <li><a href="#">Placeholder</a></li>
+            <li><a href="#">Self Help</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="Login.html">Sign in</a></li>
+        </div>
+    </div>
+<!-- Sidenav Menu from W3 -->
+<!-- https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+  
+  <!-- Use any element to open the sidenav -->
+  <span onclick="openNav()"><button >≡</button></span>
+  
+
+        <script>
+            /* Set the width of the side navigation to 250px */
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+    
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>      
+
+
+<!-- <span style="padding:10px; float:right;"> -->
+    <!--  tabs between options-->
+    <!-- <span class="tab1"> </span>
+        <b> <button type="button" class="btn" > Settings </button> -->
+            <!--  tabs between options-->
+            <!-- <span class="tab1"> </span>
+            <button type="button" class="btn"> Notifications </button> -->
+            <!--  tabs between options-->
+            <!-- <span class="tab1"> </span> -->
+            <!--Sign In  -->
+            <!-- <button type="button" class="btn"> Logout  </button> -->
+            <!--  tabs between options-->
+            <!-- <span class="tab1"> </span>
+        </b>
+</span> -->
+
+<br>
+<br>
+
+<div class="container mt-3">
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Date of Birth</th>
+            <th>Password</th>
+            <th>Security Question</th>
+            <th>Security Answer</th>
+        </tr>
+        </thead>
+        <tbody id="admin-list"></tbody>
+    </table>
+</div>
+
+<!-- 
+REQUIREMENTS 
+Add, View, Edit, or Deactivate accounts. You can ask the
+administrator to select which service he wants before displaying the
+appropriate user interface where he can perform the functionality.
+When an account is added, you must store in the database at least the
+following required information using a user interface designed to allow
+entering or modifying the information:
+-->
+<style>
+    .adminPagebtns{
+        display: block;
+        width: 100vh;
+        margin: 0 auto;
+        text-align: center;
+
+    }
+    #writeEmailBtn{
+        margin-top: 30px;
+    }
+
+</style>
+
+<div class="adminPagebtns">
+
+
+
+<!-- Removed style="float: right; margin:  0 300px; -->
+<div id="writeEmailBtndiv" > USERS: <button id="writeEmailBtn" onclick= "writeEmail()">Send Email</button>
+</div>
+
+<span id="tabLarge"></span>
+<!-- all account options-->
+
+<div class="adminAccountsbtns">
+ACCOUNTS:
+<button id="viewAccount" onclick="location.href='view_account.html'"> View Account</button> 
+</div>
+
+<span id="tabLarge"></span>
+<!-- General Ledger Options-->
+<div class="adminLedgerbtns">
+GENERAL LEDGER:
+<button id="addEntry" onclick="location.href='add_account.html'"> Add Account Entry</button> 
+<button id="viewEntry" onclick="location.href='view_entries.html'"> View Entries</button> 
+</div>
+
+
+<span id="tabLarge"></span>
+<!-- Financial Ratio Options-->
+<div class="adminRatiosbtns">
+FINANCIAL RATIO:
+<button id="viewRatios" onclick="location.href='ratios.html'"> View All Ratios</button> 
+</div>
+
+</div>
+<div id="writeEmailBody">
+    <form class="px-4 py-3" method="POST" id="my-form">
+
+        <div>
+            <label for="toEmail">To:</label>
+            <input type="text" name="To:" class="form-control" id="toEmail" placeholder="Other Email here" required>
+        </div>
+
+        <div>
+            <label for="fromEmail">From:</label>
+            <input type="email" name="From:" class="form-control" id="fromEmail" placeholder="Your Email here" required>
+        </div>
+
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name:" class="form-control" id="name" placeholder="Full name" required>
+        </div>
+
+        <div>
+            <label for="message">Massage</label>
+            <textarea name="message:" id="message" class="form-control" cols="58" rows="10" placeholder="Your Message here" required></textarea>
+        </div>
+
+        <span style="position: relative; top: 15px; right: -39%;">
+        <button type="submit">Send</button></span>
+
+   </form>
+</div>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <h1>Contact Us!</h1>
+    <ul> 
+        <a href="#">PlaceHolder</a>
+        <a href="#">PlaceHolder</a>
+        <a href="#">PlaceHolder</a>
+        
+    </ul>
+   
+</footer>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+    import { getFirestore, collection, getDoc, getDocs, onSnapshot, deleteDoc, 
+        addDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // ********** Alexander Day's Database **********
+    const firebaseConfig = {
+      apiKey: "AIzaSyAswcBVoFfQx746ZSArJw6jZRqfa3ZmBbI",
+      authDomain: "swe-4713-application-domain.firebaseapp.com",
+      projectId: "swe-4713-application-domain",
+      storageBucket: "swe-4713-application-domain.appspot.com",
+      messagingSenderId: "210297298562",
+      appId: "1:210297298562:web:815b3cc913460d968b5e9b"
+    };
+  
+    // Initialize Cloud Firestore
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(app);
+
+    //collection ref
+    const colRef = collection(db, 'Users');
+  
+
+    // Adds 'A' record to the table. This is paramount in setting it up.
+    var userNo = 0;
+    var tbody = document.getElementById('admin-list');
+
+ 
+
+    function AddItemToTable(FirstName,LastName,Email,Address,
+    DateOfBirth,Password,SecurityQuestion,SecurityAnswer) {
+        let trow = document.createElement('tr'); //represents the tables rows
+        let td1 = document.createElement('td'); //represents the tables columns (or cells as there called)
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+        let td4 = document.createElement('td');
+        let td5 = document.createElement('td');
+        let td6 = document.createElement('td');
+        let td7 = document.createElement('td');
+        let td8 = document.createElement('td');
+        let td9 = document.createElement('td');
+
+        td1.innerHTML = ++userNo;  //if you want the row numbering gone then remove or slash this part of the code.
+        td2.innerHTML = FirstName;
+        td3.innerHTML = LastName;
+        td4.innerHTML = Email;
+        td5.innerHTML = Address;
+        td6.innerHTML = DateOfBirth;
+        td7.innerHTML = Password;
+        td8.innerHTML = SecurityQuestion;
+        td9.innerHTML = SecurityAnswer;
+
+        //adds the table cells to the table row
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+        trow.appendChild(td6);
+        trow.appendChild(td7);
+        trow.appendChild(td8);
+        trow.appendChild(td9);
+
+        tbody.appendChild(trow);
+    }
+
+    //Adds the rest or the records to the table.
+    function AddAllItemsToTable(Users) {
+        userNo = 0;
+        tbody.innerHTML = "";
+        Users.forEach(element => {
+            AddItemToTable(element.FirstName, element.LastName, element.Email, 
+            element.Address, element.DateOfBirth, element.Password, 
+            element.SecurityQuestion, element.SecurityAnswer);
+        });
+    }
+
+    //gets all data from firestore. Now upgraded to update in realtime without refreshing the page.
+    async function GetAllDataRealtime() {
+        const dbRef = collection(db, "Users");
+
+        onSnapshot(dbRef,(querySnapshot) => {
+            var users = [];
+
+            querySnapshot.forEach(doc => {
+                users.push({...doc.data(), id: doc.id});
+            });
+            AddAllItemsToTable(users);
+        })
+        
+
+
+    }
+
+    //shows table upon loading up the page.
+    window.onload = GetAllDataRealtime;
+
+
+    //real time collection data. simply checks and reuploads any changes instantly. Shows on console only.
+    onSnapshot(colRef, (snapshot) => {
+        let users = []
+        snapshot.docs.forEach((doc) => {
+            users.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(users);
+       })
+  </script>  
+
+  <script>
+    function writeEmail() {
+  var x = document.getElementById("writeEmailBody");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+  </script>
+
+
+<!-- ADDITIONAL INFO
+Helpful Website: https://getbootstrap.com/docs/4.0/components/dropdowns/
+   FOR DROPDOWN:
+        <div class="dropdown" style="display:inline-block">
+                    //Sign In Dropdown
+                    <button type="button" class="btn btn-default dropdown-toggle" id="signindropdown" data-bs-toggle="dropdown"> Sign-In <span class="caret"></span></button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="user.html"> User</a></li>
+                            <li><a href="manager.html">Manager</a></li>
+                            <li><a href="admin.html">Admin</a></li>
+                        </ul>
+                </div>
+-->
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>General Ledger</title>
+
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+</head>
+
+<body>
+    <!--This section marks the begining of header of website-->
+    <section>
+        <style>
+            #writeEmailBody{
+            display:none;
+            background-color: Beige ;
+            margin-left: auto;
+            margin-right: auto;
+            width: 500px;
+            height: 540px;
+            border: 0px LightGrey ;
+            text-align: left;
+            }
+    
+            .emailSent{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+        </style>
+        <!-- Navbar with logo and buttons-->
+        
+        
+        <!-- Following will add the beige band on top with "Welcome Admin User" text -->
+        <!-- Navbar with logo and buttons-->
+    <nav>
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="app_logo.png" id="Logo"></a>
+        </div>
+        <div class="welcome-txt">
+            <h2>  Fast Accounting Happens Here! </h2>
+        </div>
+       <!-- Added an empty profile pic with the option of switching to the pre-set pic (SHOULD be changed!)-->
+       <img src="profile.jpeg" class="profile" type="button" id="profile" data-bs-toggle="dropdown"><span class="caret"></span>
+        <!-- Page Links under nav -->
+     
+        <div class="username">
+                <!-- To load username when page is loaded -->
+                <script>
+                    var showingUserFirstName = document.getElementById('userFirstName');
+                    document.write(showingUserFirstName);
+                </script>
+        </div>
+    </nav>
+    
+        <div>
+            <div class="nav-links">
+                <li><a href="#">Placeholder</a></li>
+                <li><a href="#">Self Help</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="Login.html">Sign in</a></li>
+            </div>
+        </div>
+
+        <!-- Sidenav Menu from W3 -->
+        <!-- https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+        </div>
+        
+      
+      <!-- Use any element to open the sidenav -->
+      <span onclick="openNav()"><button >≡</button></span>
+
+            <script>
+                /* Set the width of the side navigation to 250px */
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                }
+        
+            /* Set the width of the side navigation to 0 */
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+      </script>      
+</section>
+
+
+<!--This section is the main content of the page-->
+<section>
+    <center><h2>General Ledgers</h2></center>
+    <style>
+        table, th, td{
+            border:1px solid;
+            border-collapse: collapse;        
+            padding:5px;
+            font-family: arial, sans-serif;
+        }
+    </style>
+
+    <center>
+        <!--Only approved entries in ledgers-->
+        <table id="approvedTable" cellspacing="0" width="70%">
+            <thead>
+            <tr style="background-color: rgb(72, 232, 72);">
+                <th>Entry ID</th>
+                <th>Date Submitted</th>
+                <th>Account Name</th>
+                <th>Description</th>
+                <th>Attachment</th>
+            </tr>
+
+
+            <tr>
+               <td> 1</td>
+               <td> 2022-11-10</td>
+               <td> Assets</td>
+               <td> An example is needed</td>
+
+               <td> 
+                    <form name="" method="" action="">
+                        <input type="file">
+                    </form>
+                </td>
+            </tr>
+
+    
+
+            <tr>
+                <td> 2</td>
+                <td> 2022-11-01</td>
+                <td> Assets</td>
+                <td> Because Money is nice</td>
+ 
+                <td> 
+                     <form name="" method="" action="">
+                         <input type="file">
+                     </form>
+                 </td>
+             </tr>
+
+
+            <tr>
+                <td> 330</td>
+                <td> 2022-10-04</td>
+                <td> Assets</td>
+                <td> Money for Assets</td>
+ 
+                <td> 
+                     <form name="" method="" action="">
+                         <input type="file">
+                     </form>
+                 </td>
+             </tr>
+
+
+            <tr>
+                <td> 45</td>
+                <td> 2022-11-14</td>
+                <td> Assets</td>
+                <td> Money</td>
+                <td> 
+                     <form name="" method="" action="">
+                         <input type="file">
+                     </form>
+                 </td>
+             </tr>
+
+
+            </thead>
+            <tbody id="approved-journal-list"></tbody>
+        </table>
+
+
+
+
+
+
+
+    </center>
+
+</section>
+
+      
+
+
+
+
+        <!-- Footer -->
+        <!--
+        <footer class="footer">
+            <h1>Contact Us!</h1>
+            <ul> 
+                <a href="#">PlaceHolder</a>
+                <a href="#">PlaceHolder</a>
+                <a href="#">PlaceHolder</a>
+                
+            </ul>
+        </footer>
+        -->
+
+</body>
+</html>
+

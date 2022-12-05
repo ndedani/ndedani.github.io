@@ -1,0 +1,326 @@
+ALL FROM VIEW NETRIES FOR TABLE SORTING
+<script>
+    function sortOptions() {
+      var x = document.getElementById("sortView");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+
+    //CODE FROM W3Schools 
+    // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sort_table_number
+    function sortTableBalance() 
+    {
+      var table, rows, switching, i, x, y, shouldSwitch;
+      table = document.getElementById("myTable");
+      switching = true;
+      /*Make a loop that will continue until
+      no switching has been done:*/
+       while (switching) 
+       {
+          //start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /*Loop through all table rows (except the
+          first, which contains table headers):*/
+          for (i = 1; i < (rows.length - 1); i++)
+          {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[8];
+            y = rows[i + 1].getElementsByTagName("TD")[8];
+            //check if the two rows should switch place:
+            if (Number(x.innerHTML) > Number(y.innerHTML)) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+            }
+          }
+          if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }
+
+    //CODE FROM W3Schools 
+    // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sort_table_number
+    function sortTableAccount() 
+    {
+      var table, rows, switching, i, x, y, shouldSwitch;
+      table = document.getElementById("myTable");
+      switching = true;
+      /*Make a loop that will continue until
+      no switching has been done:*/
+       while (switching) 
+       {
+          //start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /*Loop through all table rows (except the
+          first, which contains table headers):*/
+          for (i = 1; i < (rows.length - 1); i++)
+          {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[1];
+            y = rows[i + 1].getElementsByTagName("TD")[1];
+            //check if the two rows should switch place:
+            if (Number(x.innerHTML) > Number(y.innerHTML)) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+            }
+          }
+          if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }
+
+
+         //CODE FROM W3Schools 
+         //
+      function sortTableAccountType() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+          //start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /*Loop through all table rows (except the
+          first, which contains table headers):*/
+          for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[2];
+            y = rows[i + 1].getElementsByTagName("TD")[2];
+            //check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+          if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }
+  </script>
+  
+
+
+
+ALL FROM VIEW ENTRIESS FOR TABLE DISPLAY
+<!--
+<center>
+<div class="container mt-3">
+  <table class="table table-dark">
+      <tr>
+          <th>Date</th>
+          <th>AccountNumber</th>
+          <th>AccountType</th>
+          <th>AccountDetails</th>
+          <th>Number</th>
+          <th>Client</th>
+          <th>Debit</th>
+          <th>Credit</th>
+          <th>Balance</th>
+      </tr>
+      <tbody id="transactions-list"></tbody>
+  </table>
+</div>
+</center>
+
+-->
+
+<!-- FIREBASE CONFIGURATION-->
+<!--
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+  import{ getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField }
+  from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAswcBVoFfQx746ZSArJw6jZRqfa3ZmBbI",
+    authDomain: "swe-4713-application-domain.firebaseapp.com",
+    databaseURL: "https://swe-4713-application-domain-default-rtdb.firebaseio.com",
+    projectId: "swe-4713-application-domain",
+    storageBucket: "swe-4713-application-domain.appspot.com",
+    messagingSenderId: "210297298562",
+    appId: "1:210297298562:web:815b3cc913460d968b5e9b"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  const db = getFirestore(app);
+
+  //collection reference 
+  const colRef = collection(db, 'Transactions');
+
+  var tbody = document.getElementById('transactions-list');
+
+
+  function AddItemToTable(Date, AccountNumber,AccountType,AccountDetails,
+    Number,Client,Debit,Credit, Balance) {
+        let trow = document.createElement('tr'); //represents the tables rows
+        let td1 = document.createElement('td'); //represents the tables columns (or cells as there called)
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+        let td4 = document.createElement('td');
+        let td5 = document.createElement('td');
+        let td6 = document.createElement('td');
+        let td7 = document.createElement('td');
+        let td8 = document.createElement('td');
+        let td9 = document.createElement('td');
+
+        //td1.innerHTML = ++userNo;  //if you want the row numbering gone then remove or slash this part of the code.
+        td1.innerHTML = Date;
+        td2.innerHTML = AccountNumber;
+        td3.innerHTML = AccountType;
+        td4.innerHTML = AccountDetails;
+        td5.innerHTML = Number;
+        td6.innerHTML = Client;
+        td7.innerHTML = Debit;
+        td8.innerHTML = Credit;
+        td9.innerHTML = Balance;
+
+        //adds the table cells to the table row
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+        trow.appendChild(td6);
+        trow.appendChild(td7);
+        trow.appendChild(td8);
+        trow.appendChild(td9);
+
+        tbody.appendChild(trow);
+    }
+
+    //Adds the rest or the records to the table.
+    function AddAllItemsToTable(Transactions) {
+        tbody.innerHTML = "";
+        Transactions.forEach(element => {
+            AddItemToTable(element.Date, element.AccountNumber, element.AccountType, 
+            element.AccountDetails, element.Number, element.Client, 
+            element.Debit, element.Credit);
+        });
+    }
+
+       //gets all data from firestore. Now upgraded to update in realtime without refreshing the page.
+       async function GetAllDataRealtime() {
+        const dbRef = collection(db, "Transactions");
+
+        onSnapshot(dbRef,(querySnapshot) => {
+            var Transactions = [];
+
+            querySnapshot.forEach(doc => {
+                users.push({...doc.data(), id: doc.id});
+            });
+            AddAllItemsToTable(Transactions);
+        })
+    }
+
+    //shows table upon loading up the page.
+    window.onload = GetAllDataRealtime;
+
+    //real time collection data. simply checks and reuploads any changes instantly. Shows on console only.
+    onSnapshot(colRef, (snapshot) => {
+        let Transactions = []
+        snapshot.docs.forEach((doc) => {
+            users.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(Transactions);
+       })
+
+</script>
+
+-->
+
+
+<!--   <tr> 
+      <th colspan="5">DATE: OCTOBER 2022 </th>
+      <th colspan="4">Sheet No. 21 </th>
+    </tr> 
+  -->
+  <!--
+
+<center>
+  <table id="myTable" class="tableFormat">
+  
+    <tr>
+      <th> Date </th>
+      <th> Account Number</th>
+      <th> Account Type</th>
+      <th>Details</th>
+      <th>Ref Number</th>
+      <th>Vendor/ Client</th>
+      <th>Debit</th>
+      <th>Credit</th>
+      <th>Balance</th>
+  </tr>
+  <tr> 
+    <td> 10/01/2022 </td>
+    <td> 0010101</td>
+    <td> Checkings</td>
+    <td>Petty Cash</td>
+    <td>1001</td>
+    <td> Epic Services</td>
+    <td>5000.00</td>
+    <td></td>
+    <td>5000.00</td>  
+  </tr>
+  <tr> 
+    <td> 10/01/2022 </td>
+    <td> 0010102</td>
+    <td> Savings</td>
+    <td>Owner's Equity</td>
+    <td>1001</td>
+    <td> Epic Services</td>
+    <td></td>
+    <td>2000.00</td>
+    <td>3000.00</td>  
+  </tr>
+  <tr> 
+    <td> 10/01/2022 </td>
+    <td> 0010101</td>
+    <td> Checkings</td>
+    <td>Accounts Receivable</td>
+    <td>1001</td>
+    <td> Epic Services</td>
+    <td>5000.00</td>
+    <td></td>
+    <td>8000.00</td>  
+  </tr>
+</table>
+</center>
+-->

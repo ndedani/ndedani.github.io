@@ -1,0 +1,162 @@
+<!-- THIS IS ADMIN DASHBOARD -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>View Accounts</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Updated upstream, adding bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- for sort -->
+    <link rel="stylesheet" type="text/css" href="WebNavBar.css" />
+</head>
+
+
+<body>
+  
+    <!-- software brand and Logo-->
+      <div id="Band">
+          <h2> <img src="app_logo.png" id="Logo"> <font size="+1.50">  <center>  Welcome Admin! </center>  </font></h2>
+      </div>
+    <br> </br>
+  
+    <h3> <center> CHARTS OF ACCOUNTS </center></h3>
+
+  
+    <style id="#tableFormat">
+      table, th, td {
+        border:1px solid;
+        border-collapse: collapse;
+        column-span: 2;
+        padding:15px;
+      }
+      </style>
+  
+  <center>
+  
+    <span id="tabLarge"></span>
+    <input id="searchUser" type="text"> <br><br>
+   <span id="tabLarge"></span>
+    <button id="searchUserBtn"> Search</button>
+
+
+    <br>
+    <!-- SORT CODE FROM https://icons.getbootstrap.com/icons/sort-down-alt/ 
+    <span id="tabLarge"></span>
+    <button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+      <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"/>
+    </svg> Sort
+  </button>
+-->
+
+ 
+
+<style>
+div {
+  background-color: beige;
+  width: 20%;
+  display: none;
+}
+  
+span:hover + div {
+  display: block;
+}
+</style>
+
+
+<span> <button> Hover over me!</button></span>
+<div style="float:left;">I will show on hover</div>
+
+<button style="font-size:16px" > Sort <i class="fa fa-sort"></i></button>
+  <button style="font-size:16px"> Filter <i class="fa fa-filter"></i></button>
+
+ 
+  <!-- 
+  <button style="font-size:16px; cursor: help;"> Sort <i class="fa fa-sort"></i></button>
+   -->
+
+
+  <br>  
+  <span id="tabLarge"></span>
+  <span id="tabLarge"></span>
+    <table id="tableFormat">
+      <tr >
+        <th> Account Number </th>
+        <th> Account Name </th>
+        <th> Account Category  </th>
+        <th> Account Balance </th>
+      </tr>
+  
+      <tr style="width:70%">
+        <td>0010101 </td>
+        <td> <button style="border: none; background-color: inherit; cursor: pointer;"> Checkings</button> </td>
+        <td>Lorem ipsum</td>
+        <td>1000.00</td>
+      </tr>
+  
+      <tr>
+        <td>0010102 </td>
+        <td> <button style="border: none; background-color: inherit; cursor: pointer;"> Savings</button> </td>
+        <td>Lorem ipsum</td>
+        <td>4500.00</td>
+      </tr>
+  
+      <tr>
+        <td>0010103</td>
+        <td> <button style="border: none; background-color: inherit; cursor: pointer;"> Undeposited Funds</button> </td>
+        <td>Lorem ipsum</td>
+        <td>Lorem ipsum</td>
+      </tr>
+  
+      <tr>
+        <td>0010104</td>
+        <td> <button style="border: none; background-color: inherit; cursor: pointer;"> Assets</button> </td>
+        <td>Lorem ipsum</td>
+        <td>Lorem ipsum</td>
+      </tr>
+    </table>
+  </center>
+  
+
+
+
+  <div class="callout">
+    <div class="callout-header">Callout Header</div>
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+    <div class="callout-container">
+      <p>Some text to describe the callout message. <a href="#">Learn more</a> or close it if it is in your way.</p>
+    </div>
+  
+    <!-- -->
+  </body>
+
+<!-- 
+<body>
+    
+    <div id="Band">
+        <h2> <img src="app_logo.png" id="Logo"> <font size="+2.0">  <center>  Welcome Admin! </center>  </font></h2>
+    </div>
+
+    <br> 
+    <br>
+    
+    <center> 
+        Search Account Here: <br>
+        <italics> (Search by Account Name/Number)*</italics>
+        
+        <br> <br>
+        <span id="tabLarge"></span>
+        <input id="searchUser" type="text"> <br><br>
+       <span id="tabLarge"></span>
+        <button id="searchUserBtn"> Search</button>
+    </center>
+</body>
+-->
